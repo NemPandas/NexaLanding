@@ -1,0 +1,244 @@
+import {
+  ArrowRight,
+  Boxes,
+  CheckCircle2,
+  Code2,
+  Layers3,
+  LayoutDashboard,
+  Menu,
+  Rocket,
+  Smartphone,
+  Sparkles,
+  UsersRound,
+  WandSparkles,
+  Zap,
+} from "lucide-react";
+import type { ElementType } from "react";
+
+type CardItem = {
+  title: string;
+  description: string;
+  icon: ElementType;
+};
+
+type StatItem = {
+  value: string;
+  label: string;
+  icon: ElementType;
+};
+
+const navItems = ["Főoldal", "Megoldások", "Termékek", "Rólunk", "Árak", "Kapcsolat"];
+
+const featureItems: CardItem[] = [
+  {
+    title: "Gyors fejlesztés",
+    description: "Agilis folyamatokkal gyorsan piacra viheted az ötleted.",
+    icon: Zap,
+  },
+  {
+    title: "Modern technológia",
+    description: "A legújabb technológiákkal építünk stabil termékeket.",
+    icon: Code2,
+  },
+  {
+    title: "Skálázható megoldások",
+    description: "Növekedésre tervezett architektúrák, amik együtt nőnek veled.",
+    icon: LayoutDashboard,
+  },
+  {
+    title: "Felhasználóközpontú",
+    description: "A felhasználói élmény a középpontban van a tervezéstől indulva.",
+    icon: UsersRound,
+  },
+];
+
+const serviceItems: CardItem[] = [
+  {
+    title: "Webalkalmazások",
+    description: "Egyedi webes rendszerek, amik üzleti céljaidat szolgálják.",
+    icon: LayoutDashboard,
+  },
+  {
+    title: "SaaS termékek",
+    description: "Előfizetéses megoldások, amik skálázhatók és jövőbiztosak.",
+    icon: Layers3,
+  },
+  {
+    title: "Mobilalkalmazások",
+    description: "Nagy teljesítményű mobil appok iOS-re és Androidra.",
+    icon: Smartphone,
+  },
+  {
+    title: "UI/UX tervezés",
+    description: "Intuitív és modern felületek, amik felhasználóidat helyezik előtérbe.",
+    icon: WandSparkles,
+  },
+];
+
+const stats: StatItem[] = [
+  { value: "50+", label: "Elégedett ügyfél", icon: UsersRound },
+  { value: "120+", label: "Sikeres projekt", icon: Boxes },
+  { value: "3 év+", label: "Tapasztalat", icon: Rocket },
+  { value: "99%", label: "Ügyfél elégedettség", icon: CheckCircle2 },
+];
+
+function GlassIcon({ icon: Icon }: { icon: ElementType }) {
+  return (
+    <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl border border-neon-pink/35 bg-neon-pink/10 text-neon-pink shadow-neon transition duration-300 group-hover:scale-105 group-hover:bg-neon-pink/15">
+      <Icon className="h-7 w-7" strokeWidth={2.2} />
+    </div>
+  );
+}
+
+function FeatureCard({ item }: { item: CardItem }) {
+  return (
+    <article className="group flex gap-4 rounded-3xl border border-white/10 bg-white/[0.045] p-5 shadow-2xl shadow-black/25 backdrop-blur-xl transition duration-300 hover:-translate-y-1 hover:border-neon-pink/45 hover:bg-white/[0.07] hover:shadow-neon-soft">
+      <GlassIcon icon={item.icon} />
+      <div>
+        <h3 className="text-base font-bold text-white">{item.title}</h3>
+        <p className="mt-2 text-sm leading-6 text-slate-300">{item.description}</p>
+      </div>
+    </article>
+  );
+}
+
+function ServiceCard({ item }: { item: CardItem }) {
+  return (
+    <article className="group relative overflow-hidden rounded-3xl border border-neon-pink/20 bg-white/[0.045] p-7 shadow-2xl shadow-black/30 backdrop-blur-xl transition duration-300 hover:-translate-y-2 hover:border-neon-pink/60 hover:shadow-neon-soft">
+      <div className="absolute -right-16 -top-16 h-36 w-36 rounded-full bg-neon-pink/20 blur-3xl transition duration-300 group-hover:bg-neon-pink/35" />
+      <GlassIcon icon={item.icon} />
+      <h3 className="mt-6 text-xl font-bold text-white">{item.title}</h3>
+      <p className="mt-3 min-h-16 text-sm leading-6 text-slate-300">{item.description}</p>
+      <button className="mt-7 inline-flex items-center gap-2 text-sm font-semibold text-neon-pink transition hover:gap-3 hover:text-neon-magenta">
+        Tovább
+        <ArrowRight className="h-4 w-4" />
+      </button>
+    </article>
+  );
+}
+
+function NeonOrb() {
+  return (
+    <div className="relative mx-auto aspect-square w-full max-w-[460px]">
+      <div className="absolute inset-6 rounded-full border-[18px] border-neon-pink bg-neon-pink/5 shadow-[0_0_45px_rgba(255,0,122,0.75),inset_0_0_28px_rgba(255,0,122,0.35)]" />
+      <div className="absolute inset-0 rounded-full bg-neon-pink/20 blur-3xl" />
+      <div className="absolute left-[18%] top-[22%] h-[18%] w-[56%] -rotate-[24deg] rounded-sm bg-neon-pink shadow-neon" />
+      <div className="absolute left-[21%] top-[43%] h-[14%] w-[48%] -rotate-45 rounded-sm bg-neon-pink shadow-neon" />
+      <div className="absolute bottom-[23%] right-[17%] h-[17%] w-[43%] -rotate-45 rounded-sm bg-neon-pink shadow-neon" />
+      <div className="absolute right-[19%] top-[39%] h-[22%] w-[30%] rotate-[18deg] rounded-sm bg-neon-pink shadow-neon" />
+      <div className="absolute bottom-[9%] left-1/2 h-32 w-64 -translate-x-1/2 rounded-full bg-neon-pink/45 blur-3xl" />
+    </div>
+  );
+}
+
+function App() {
+  return (
+    <main className="min-h-screen overflow-hidden bg-midnight text-white">
+      <div className="fixed inset-0 -z-10 bg-[radial-gradient(circle_at_65%_28%,rgba(255,0,122,0.26),transparent_28%),radial-gradient(circle_at_24%_80%,rgba(168,85,247,0.16),transparent_30%),linear-gradient(135deg,#05030d_0%,#09071a_44%,#16051f_100%)]" />
+      <div className="fixed inset-0 -z-10 bg-[linear-gradient(125deg,transparent_0%,transparent_39%,rgba(255,0,122,0.18)_40%,transparent_42%),linear-gradient(315deg,transparent_0%,transparent_64%,rgba(168,85,247,0.18)_65%,transparent_67%)] opacity-70" />
+
+      <header className="sticky top-0 z-50 px-4 py-5">
+        <nav className="mx-auto flex max-w-7xl items-center justify-between rounded-3xl border border-white/10 bg-white/[0.055] px-5 py-4 shadow-2xl shadow-black/40 backdrop-blur-2xl md:px-8">
+          <a href="#home" className="flex items-center gap-3 text-2xl font-black tracking-wide text-neon-pink">
+            <span className="grid h-9 w-9 place-items-center rounded-full border border-neon-pink/60 bg-neon-pink/10 shadow-neon">
+              <Sparkles className="h-5 w-5" />
+            </span>
+            NEXA
+          </a>
+          <div className="hidden items-center gap-9 text-sm font-medium text-slate-200 lg:flex">
+            {navItems.map((item, index) => (
+              <a
+                key={item}
+                href={index === 0 ? "#home" : "#services"}
+                className={`transition hover:text-neon-pink ${index === 0 ? "text-neon-pink" : ""}`}
+              >
+                {item}
+              </a>
+            ))}
+          </div>
+          <button className="hidden rounded-2xl border border-neon-pink/55 px-6 py-3 text-sm font-semibold text-neon-pink shadow-neon transition hover:-translate-y-0.5 hover:bg-neon-pink hover:text-white md:inline-flex">
+            Kezdjük el
+          </button>
+          <button aria-label="Menü megnyitása" className="rounded-2xl border border-white/10 p-3 text-white lg:hidden">
+            <Menu className="h-5 w-5" />
+          </button>
+        </nav>
+      </header>
+
+      <section id="home" className="mx-auto grid max-w-7xl items-center gap-12 px-6 pb-16 pt-14 md:pt-20 lg:grid-cols-[1.05fr_0.95fr]">
+        <div>
+          <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-4 py-2 text-xs font-bold uppercase tracking-[0.18em] text-pink-200 backdrop-blur-xl">
+            <span className="h-2 w-2 rounded-full bg-neon-pink shadow-neon" />
+            Digitális termék stúdió
+          </div>
+          <h1 className="mt-7 max-w-3xl text-5xl font-black leading-[1.02] tracking-normal sm:text-6xl lg:text-7xl">
+            <span className="block text-neon-pink drop-shadow-[0_0_26px_rgba(255,0,122,0.35)]">Digitális termékek.</span>
+            <span className="block text-white">Valódi érték.</span>
+          </h1>
+          <p className="mt-7 max-w-2xl text-lg leading-8 text-slate-300">
+            A Nexa segít ötleteidet modern, skálázható és felhasználóközpontú digitális termékekké formálni.
+          </p>
+          <div className="mt-9 flex flex-col gap-4 sm:flex-row">
+            <a
+              href="#contact"
+              className="inline-flex items-center justify-center gap-3 rounded-2xl bg-neon-pink px-8 py-4 text-sm font-bold text-white shadow-neon transition hover:-translate-y-1 hover:bg-neon-magenta hover:shadow-[0_0_48px_rgba(255,0,122,0.75)]"
+            >
+              Kezdjük el a projektet
+              <ArrowRight className="h-5 w-5" />
+            </a>
+            <a
+              href="#services"
+              className="inline-flex items-center justify-center gap-3 rounded-2xl border border-white/10 bg-white/[0.045] px-8 py-4 text-sm font-bold text-white backdrop-blur-xl transition hover:-translate-y-1 hover:border-neon-pink/50 hover:text-neon-pink hover:shadow-neon-soft"
+            >
+              Nézd meg a munkáinkat
+              <span className="grid h-6 w-6 place-items-center rounded-full border border-neon-pink/50 text-neon-pink">
+                <ArrowRight className="h-3.5 w-3.5" />
+              </span>
+            </a>
+          </div>
+        </div>
+        <div className="relative min-h-[320px]">
+          <NeonOrb />
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-6">
+        <div className="grid gap-4 rounded-3xl border border-white/10 bg-white/[0.045] p-5 shadow-2xl shadow-black/30 backdrop-blur-2xl sm:grid-cols-2 lg:grid-cols-4">
+          {featureItems.map((item) => (
+            <FeatureCard key={item.title} item={item} />
+          ))}
+        </div>
+      </section>
+
+      <section id="services" className="mx-auto max-w-7xl px-6 py-20">
+        <div className="text-center">
+          <p className="text-xs font-black uppercase tracking-[0.28em] text-neon-pink">Megoldásaink</p>
+          <h2 className="mt-3 text-4xl font-black tracking-normal text-white sm:text-5xl">Miben segíthetünk?</h2>
+        </div>
+        <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+          {serviceItems.map((item) => (
+            <ServiceCard key={item.title} item={item} />
+          ))}
+        </div>
+      </section>
+
+      <section id="contact" className="mx-auto max-w-7xl px-6 pb-12">
+        <div className="grid gap-5 rounded-3xl border border-white/10 bg-white/[0.045] p-6 shadow-2xl shadow-black/35 backdrop-blur-2xl sm:grid-cols-2 lg:grid-cols-4">
+          {stats.map(({ value, label, icon: Icon }) => (
+            <div key={label} className="flex items-center gap-5 rounded-2xl p-3 transition hover:bg-white/[0.04]">
+              <div className="text-neon-pink drop-shadow-[0_0_18px_rgba(255,0,122,0.75)]">
+                <Icon className="h-10 w-10" strokeWidth={2.1} />
+              </div>
+              <div>
+                <div className="text-4xl font-black text-white">{value}</div>
+                <div className="mt-1 text-sm text-slate-300">{label}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+    </main>
+  );
+}
+
+export default App;
