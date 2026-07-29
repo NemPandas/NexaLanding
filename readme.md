@@ -1,6 +1,4 @@
-2. Design updatet 
-    - Landing
-    - Navbar
+
 3. Pages
     - Kontakt form
     - Kalkulátor

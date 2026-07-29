@@ -1,29 +1,22 @@
 import {
   ArrowRight,
   Boxes,
-  Check,
   CheckCircle2,
-  ChevronDown,
   Code2,
-  Globe2,
   Layers3,
   LayoutDashboard,
-  Menu,
   Rocket,
   Smartphone,
-  Sparkles,
   UsersRound,
   WandSparkles,
   Zap,
 } from "lucide-react";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect } from "react";
 import type { ElementType } from "react";
 import { useTranslation } from "react-i18next";
-import {
-  LANGUAGE_STORAGE_KEY,
-  supportedLanguages,
-  type Language,
-} from "./i18n";
+import { Navbar } from "./components/Navbar";
+import { SiteBackground } from "./components/SiteBackground";
+import { LANGUAGE_STORAGE_KEY, supportedLanguages, type Language } from "./i18n";
 
 type CardItem = {
   title: string;
@@ -35,11 +28,6 @@ type StatItem = {
   value: string;
   label: string;
   icon: ElementType;
-};
-
-const languageLabels: Record<Language, string> = {
-  hu: "HU",
-  en: "EN",
 };
 
 function isLanguage(value: string | null): value is Language {
@@ -81,88 +69,28 @@ function ServiceCard({ item, moreLabel }: { item: CardItem; moreLabel: string })
   );
 }
 
-function LanguageSelector() {
-  const { i18n, t } = useTranslation();
-  const [isOpen, setIsOpen] = useState(false);
-  const containerRef = useRef<HTMLDivElement>(null);
-  const currentLanguage: Language = i18n.resolvedLanguage === "hu" ? "hu" : "en";
-
-  useEffect(() => {
-    const closeOnOutsideClick = (event: MouseEvent) => {
-      if (!containerRef.current?.contains(event.target as Node)) {
-        setIsOpen(false);
-      }
-    };
-
-    const closeOnEscape = (event: KeyboardEvent) => {
-      if (event.key === "Escape") setIsOpen(false);
-    };
-
-    document.addEventListener("mousedown", closeOnOutsideClick);
-    document.addEventListener("keydown", closeOnEscape);
-
-    return () => {
-      document.removeEventListener("mousedown", closeOnOutsideClick);
-      document.removeEventListener("keydown", closeOnEscape);
-    };
-  }, []);
-
-  const selectLanguage = (language: Language) => {
-    localStorage.setItem(LANGUAGE_STORAGE_KEY, language);
-    void i18n.changeLanguage(language);
-    setIsOpen(false);
-  };
-
-  return (
-    <div ref={containerRef} className="relative">
-      <button
-        type="button"
-        aria-label={t("language.label")}
-        aria-haspopup="listbox"
-        aria-expanded={isOpen}
-        onClick={() => setIsOpen((open) => !open)}
-        className="inline-flex h-11 items-center gap-2 rounded-2xl border border-white/10 bg-white/[0.045] px-3 text-sm font-bold text-white transition hover:border-neon-pink/50 hover:text-neon-pink"
-      >
-        <Globe2 className="h-4 w-4" />
-        {languageLabels[currentLanguage]}
-        <ChevronDown className={`h-4 w-4 transition ${isOpen ? "rotate-180" : ""}`} />
-      </button>
-
-      {isOpen && (
-        <div
-          role="listbox"
-          aria-label={t("language.label")}
-          className="absolute right-0 top-14 z-50 min-w-40 overflow-hidden rounded-2xl border border-white/10 bg-[#100b1d]/95 p-1.5 shadow-2xl shadow-black/50 backdrop-blur-2xl"
-        >
-          {supportedLanguages.map((language) => (
-            <button
-              key={language}
-              type="button"
-              role="option"
-              aria-selected={currentLanguage === language}
-              onClick={() => selectLanguage(language)}
-              className="flex w-full items-center justify-between gap-4 rounded-xl px-3 py-2.5 text-left text-sm text-slate-200 transition hover:bg-white/10 hover:text-white"
-            >
-              <span>{t(`language.${language}`)}</span>
-              {currentLanguage === language && <Check className="h-4 w-4 text-neon-pink" />}
-            </button>
-          ))}
-        </div>
-      )}
-    </div>
-  );
-}
-
 function NeonOrb() {
   return (
-    <div className="relative mx-auto aspect-square w-full max-w-[460px]">
-      <div className="absolute inset-6 rounded-full border-[18px] border-neon-pink bg-neon-pink/5 shadow-[0_0_45px_rgba(255,0,122,0.75),inset_0_0_28px_rgba(255,0,122,0.35)]" />
-      <div className="absolute inset-0 rounded-full bg-neon-pink/20 blur-3xl" />
-      <div className="absolute left-[18%] top-[22%] h-[18%] w-[56%] -rotate-[24deg] rounded-sm bg-neon-pink shadow-neon" />
-      <div className="absolute left-[21%] top-[43%] h-[14%] w-[48%] -rotate-45 rounded-sm bg-neon-pink shadow-neon" />
-      <div className="absolute bottom-[23%] right-[17%] h-[17%] w-[43%] -rotate-45 rounded-sm bg-neon-pink shadow-neon" />
-      <div className="absolute right-[19%] top-[39%] h-[22%] w-[30%] rotate-[18deg] rounded-sm bg-neon-pink shadow-neon" />
-      <div className="absolute bottom-[9%] left-1/2 h-32 w-64 -translate-x-1/2 rounded-full bg-neon-pink/45 blur-3xl" />
+    <div className="relative mx-auto aspect-square w-full max-w-[500px]">
+      <div className="absolute inset-[8%] rounded-full border border-white/10 bg-white/[0.035] shadow-[inset_0_0_80px_rgba(255,0,122,.08),0_30px_100px_rgba(0,0,0,.45)] backdrop-blur-sm" />
+      <div className="absolute inset-[16%] animate-[spin_24s_linear_infinite] rounded-full border border-dashed border-neon-pink/35" />
+      <div className="absolute inset-[27%] animate-[spin_18s_linear_infinite_reverse] rounded-full border border-neon-violet/35" />
+      <div className="absolute inset-[34%] rounded-[2rem] border border-neon-pink/50 bg-[#10091d]/85 shadow-neon backdrop-blur-xl [transform:rotate(45deg)]">
+        <div className="absolute inset-[18%] rounded-2xl bg-neon-pink shadow-[0_0_55px_rgba(255,0,122,.75)]" />
+      </div>
+      <div className="absolute left-[7%] top-[25%] rounded-2xl border border-white/10 bg-[#100b1d]/80 px-4 py-3 shadow-2xl backdrop-blur-xl">
+        <div className="flex items-center gap-2">
+          <span className="h-2 w-2 rounded-full bg-emerald-400 shadow-[0_0_12px_rgba(52,211,153,.8)]" />
+          <span className="h-1.5 w-16 rounded-full bg-white/20" />
+        </div>
+        <div className="mt-3 h-1.5 w-24 rounded-full bg-neon-pink/60" />
+      </div>
+      <div className="absolute bottom-[13%] right-[2%] grid h-20 w-20 place-items-center rounded-3xl border border-neon-pink/30 bg-neon-pink/10 text-neon-pink shadow-neon backdrop-blur-xl">
+        <Code2 className="h-8 w-8" />
+      </div>
+      <span className="absolute right-[9%] top-[16%] h-3 w-3 rounded-full bg-neon-pink shadow-neon" />
+      <span className="absolute bottom-[21%] left-[14%] h-2 w-2 rounded-full bg-neon-violet shadow-[0_0_18px_rgba(168,85,247,.9)]" />
+      <div className="absolute inset-[15%] rounded-full bg-neon-pink/10 blur-3xl" />
     </div>
   );
 }
@@ -208,17 +136,6 @@ function App() {
     description?.setAttribute("content", t("meta.description"));
   }, [i18n.resolvedLanguage, t]);
 
-  const navItems = useMemo(
-    () => [
-      { label: t("nav.solutions"), href: "#home" },
-      { label: t("nav.products"), href: "#services" },
-      { label: t("nav.about"), href: "#services" },
-      { label: t("nav.pricing"), href: "#services" },
-      { label: t("nav.contact"), href: "#contact" },
-    ],
-    [t, i18n.resolvedLanguage],
-  );
-
   const featureItems: CardItem[] = [
     { title: t("features.fast.title"), description: t("features.fast.description"), icon: Zap },
     { title: t("features.modern.title"), description: t("features.modern.description"), icon: Code2 },
@@ -249,51 +166,17 @@ function App() {
   ];
 
   return (
-    <main className="min-h-screen overflow-hidden bg-midnight text-white">
-      <div className="fixed inset-0 -z-10 bg-[radial-gradient(circle_at_65%_28%,rgba(255,0,122,0.26),transparent_28%),radial-gradient(circle_at_24%_80%,rgba(168,85,247,0.16),transparent_30%),linear-gradient(135deg,#05030d_0%,#09071a_44%,#16051f_100%)]" />
-      <div className="fixed inset-0 -z-10 bg-[linear-gradient(125deg,transparent_0%,transparent_39%,rgba(255,0,122,0.18)_40%,transparent_42%),linear-gradient(315deg,transparent_0%,transparent_64%,rgba(168,85,247,0.18)_65%,transparent_67%)] opacity-70" />
+    <SiteBackground>
+      <Navbar />
 
-      <header className="sticky top-0 z-50 px-4 py-5">
-        <nav className="mx-auto flex max-w-7xl items-center justify-between rounded-3xl border border-white/10 bg-white/[0.055] px-5 py-4 shadow-2xl shadow-black/40 backdrop-blur-2xl md:px-8">
-          <a href="#home" className="flex items-center gap-3 text-2xl font-black tracking-wide text-neon-pink">
-            <span className="grid h-9 w-9 place-items-center rounded-full border border-neon-pink/60 bg-neon-pink/10 shadow-neon">
-              <Sparkles className="h-5 w-5" />
-            </span>
-            NEXA
-          </a>
-          <div className="hidden items-center gap-9 text-sm font-medium text-slate-200 lg:flex">
-            {navItems.map((item, index) => (
-              <a
-                key={item.label}
-                href={item.href}
-                className={`transition hover:text-neon-pink ${index === 0 ? "text-neon-pink" : ""}`}
-              >
-                {item.label}
-              </a>
-            ))}
-          </div>
-          <div className="ml-auto flex items-center gap-2 lg:ml-0">
-            <LanguageSelector />
-            <button className="hidden rounded-2xl border border-neon-pink/55 px-6 py-3 text-sm font-semibold text-neon-pink shadow-neon transition hover:-translate-y-0.5 hover:bg-neon-pink hover:text-white md:inline-flex">
-              {t("nav.start")}
-            </button>
-            <button
-              aria-label={t("nav.openMenu")}
-              className="rounded-2xl border border-white/10 p-3 text-white lg:hidden"
-            >
-              <Menu className="h-5 w-5" />
-            </button>
-          </div>
-        </nav>
-      </header>
-
-      <section id="home" className="mx-auto grid max-w-7xl items-center gap-12 px-6 pb-16 pt-14 md:pt-20 lg:grid-cols-[1.05fr_0.95fr]">
+      <main>
+      <section id="home" className="mx-auto grid min-h-[calc(100vh-90px)] max-w-7xl items-center gap-12 px-6 pb-20 pt-14 md:pt-16 lg:grid-cols-[1.05fr_0.95fr]">
         <div>
           <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-4 py-2 text-xs font-bold uppercase tracking-[0.18em] text-pink-200 backdrop-blur-xl">
             <span className="h-2 w-2 rounded-full bg-neon-pink shadow-neon" />
             {t("hero.eyebrow")}
           </div>
-          <h1 className="mt-7 max-w-3xl text-5xl font-black leading-[1.02] tracking-normal sm:text-6xl lg:text-7xl">
+          <h1 className="mt-7 max-w-3xl text-5xl font-black leading-[0.98] tracking-[-0.04em] sm:text-6xl lg:text-7xl">
             <span className="block text-neon-pink drop-shadow-[0_0_26px_rgba(255,0,122,0.35)]">{t("hero.titlePrimary")}</span>
             <span className="block text-white">{t("hero.titleSecondary")}</span>
           </h1>
@@ -317,7 +200,7 @@ function App() {
             </a>
           </div>
         </div>
-        <div className="relative min-h-[320px]">
+        <div className="relative min-h-[340px]">
           <NeonOrb />
         </div>
       </section>
@@ -357,7 +240,8 @@ function App() {
           ))}
         </div>
       </section>
-    </main>
+      </main>
+    </SiteBackground>
   );
 }
 
