@@ -2,7 +2,6 @@
 3. Pages
     - Kontakt form
     - Kalkulátor
-    - Project's
 5.Favicon
 6.Dynamic tabbar
 7.SEO

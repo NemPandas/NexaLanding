@@ -8,7 +8,7 @@ export function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const navItems = [
     { label: t("nav.calculator"), href: "/#calculator" },
-    { label: t("nav.projects"), href: "/#projects" },
+    { label: t("nav.projects"), href: "/projects" },
     { label: t("nav.products"), href: "/products" },
     { label: t("nav.contact"), href: "/#contact" },
   ];

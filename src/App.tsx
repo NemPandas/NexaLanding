@@ -18,6 +18,7 @@ import { Navbar } from "./components/Navbar";
 import { SiteBackground } from "./components/SiteBackground";
 import { LANGUAGE_STORAGE_KEY, supportedLanguages, type Language } from "./i18n";
 import { ProductsPage } from "./pages/ProductsPage";
+import { ProjectsPage } from "./pages/ProjectsPage";
 
 type CardItem = {
   title: string;
@@ -99,6 +100,7 @@ function NeonOrb() {
 function App() {
   const { i18n, t } = useTranslation();
   const isProductsPage = window.location.pathname.replace(/\/+$/, "") === "/products";
+  const isProjectsPage = window.location.pathname.replace(/\/+$/, "") === "/projects";
 
   useEffect(() => {
     const savedLanguage = localStorage.getItem(LANGUAGE_STORAGE_KEY);
@@ -132,17 +134,26 @@ function App() {
   useEffect(() => {
     const language: Language = i18n.resolvedLanguage === "hu" ? "hu" : "en";
     document.documentElement.lang = language;
-    document.title = t(isProductsPage ? "productsPage.metaTitle" : "meta.title");
+    const metaPrefix = isProductsPage
+      ? "productsPage"
+      : isProjectsPage
+        ? "projectsPage"
+        : "meta";
+    document.title = t(`${metaPrefix}.${metaPrefix === "meta" ? "title" : "metaTitle"}`);
 
     const description = document.querySelector<HTMLMetaElement>('meta[name="description"]');
     description?.setAttribute(
       "content",
-      t(isProductsPage ? "productsPage.metaDescription" : "meta.description"),
+      t(`${metaPrefix}.${metaPrefix === "meta" ? "description" : "metaDescription"}`),
     );
-  }, [i18n.resolvedLanguage, isProductsPage, t]);
+  }, [i18n.resolvedLanguage, isProductsPage, isProjectsPage, t]);
 
   if (isProductsPage) {
     return <ProductsPage />;
+  }
+
+  if (isProjectsPage) {
+    return <ProjectsPage />;
   }
 
   const featureItems: CardItem[] = [

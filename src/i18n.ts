@@ -32,6 +32,25 @@ const resources = {
           },
         },
       },
+      projectsPage: {
+        metaTitle: "Projektek – Nexa",
+        metaDescription: "Ismerd meg a Nexa válogatott webes és digitális projektjeit.",
+        eyebrow: "Kiemelt munkáink",
+        title: "Digitális élmények, valódi üzleti célokra.",
+        description:
+          "Válogatás azokból a projektekből, ahol a stratégia, a design és a fejlesztés egyetlen következetes rendszerben találkozik.",
+        listLabel: "Nexa projektek",
+        projectNumber: "Projekt {{number}}",
+        imageAlt: "{{title}} projektbemutató",
+        openProjectLabel: "{{title}} projekt megnyitása",
+        items: {
+          smuci: {
+            title: "Smuci Sneakers",
+            description:
+              "Modern sneaker webáruház új és limitált modellekkel, átlátható termékkínálattal és gyors online vásárlási élménnyel.",
+          },
+        },
+      },
       language: {
         label: "Nyelv kiválasztása",
         hu: "Magyar",
@@ -126,6 +145,25 @@ const resources = {
             title: "Nexa CLI",
             description:
               "Generate a complete full-stack project skeleton with selectable backend, authentication, database, and frontend using a single command.",
+          },
+        },
+      },
+      projectsPage: {
+        metaTitle: "Projects – Nexa",
+        metaDescription: "Explore Nexa's selected web and digital projects.",
+        eyebrow: "Selected work",
+        title: "Digital experiences built around real business goals.",
+        description:
+          "A selection of projects where strategy, design, and development come together in one consistent system.",
+        listLabel: "Nexa projects",
+        projectNumber: "Project {{number}}",
+        imageAlt: "{{title}} project preview",
+        openProjectLabel: "Open the {{title}} project",
+        items: {
+          smuci: {
+            title: "Smuci Sneakers",
+            description:
+              "A modern sneaker store featuring new and limited releases, a clear product catalog, and a fast online shopping experience.",
           },
         },
       },
