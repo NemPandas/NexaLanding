@@ -17,6 +17,7 @@ import { useTranslation } from "react-i18next";
 import { Navbar } from "./components/Navbar";
 import { SiteBackground } from "./components/SiteBackground";
 import { LANGUAGE_STORAGE_KEY, supportedLanguages, type Language } from "./i18n";
+import { ProductsPage } from "./pages/ProductsPage";
 
 type CardItem = {
   title: string;
@@ -97,6 +98,7 @@ function NeonOrb() {
 
 function App() {
   const { i18n, t } = useTranslation();
+  const isProductsPage = window.location.pathname.replace(/\/+$/, "") === "/products";
 
   useEffect(() => {
     const savedLanguage = localStorage.getItem(LANGUAGE_STORAGE_KEY);
@@ -130,11 +132,18 @@ function App() {
   useEffect(() => {
     const language: Language = i18n.resolvedLanguage === "hu" ? "hu" : "en";
     document.documentElement.lang = language;
-    document.title = t("meta.title");
+    document.title = t(isProductsPage ? "productsPage.metaTitle" : "meta.title");
 
     const description = document.querySelector<HTMLMetaElement>('meta[name="description"]');
-    description?.setAttribute("content", t("meta.description"));
-  }, [i18n.resolvedLanguage, t]);
+    description?.setAttribute(
+      "content",
+      t(isProductsPage ? "productsPage.metaDescription" : "meta.description"),
+    );
+  }, [i18n.resolvedLanguage, isProductsPage, t]);
+
+  if (isProductsPage) {
+    return <ProductsPage />;
+  }
 
   const featureItems: CardItem[] = [
     { title: t("features.fast.title"), description: t("features.fast.description"), icon: Zap },

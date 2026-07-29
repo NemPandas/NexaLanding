@@ -13,6 +13,25 @@ const resources = {
         description:
           "A Nexa modern webalkalmazásokat, SaaS termékeket és mobilalkalmazásokat tervez és fejleszt.",
       },
+      productsPage: {
+        metaTitle: "Termékek – Nexa",
+        metaDescription: "Fedezd fel a Nexa saját digitális termékeit és fejlesztői eszközeit.",
+        eyebrow: "Saját termékeink",
+        title: "Eszközök, amelyeket mi is szívesen használunk.",
+        description:
+          "Saját problémákból született, gondosan felépített digitális termékek fejlesztőknek és modern csapatoknak.",
+        featured: "Kiemelt",
+        viewProduct: "Termék megnyitása",
+        listLabel: "Nexa termékek",
+        imageAlt: "{{title}} termékbemutató",
+        items: {
+          nexaCli: {
+            title: "Nexa CLI",
+            description:
+              "Egyetlen paranccsal létrehoz egy teljes full-stack projektvázat választható backenddel, autentikációval, adatbázissal és frontenddel.",
+          },
+        },
+      },
       language: {
         label: "Nyelv kiválasztása",
         hu: "Magyar",
@@ -90,6 +109,25 @@ const resources = {
         title: "Nexa – Digital product studio",
         description:
           "Nexa designs and develops modern web applications, SaaS products, and mobile apps.",
+      },
+      productsPage: {
+        metaTitle: "Products – Nexa",
+        metaDescription: "Discover Nexa's own digital products and developer tools.",
+        eyebrow: "Our products",
+        title: "Tools we genuinely enjoy using.",
+        description:
+          "Carefully crafted digital products born from real problems, built for developers and modern teams.",
+        featured: "Featured",
+        viewProduct: "View product",
+        listLabel: "Nexa products",
+        imageAlt: "{{title}} product preview",
+        items: {
+          nexaCli: {
+            title: "Nexa CLI",
+            description:
+              "Generate a complete full-stack project skeleton with selectable backend, authentication, database, and frontend using a single command.",
+          },
+        },
       },
       language: {
         label: "Select language",
