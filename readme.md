@@ -1,6 +1,3 @@
-
-5.Favicon
-6.Dynamic tabbar
 7.SEO
 8. Hero code elemből lehetne még 2
 9. Céges email

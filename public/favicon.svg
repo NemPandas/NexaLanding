@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <linearGradient id="nexa-gradient" x1="10" y1="8" x2="54" y2="58" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#ff2bbf"/>
+      <stop offset="1" stop-color="#ff007a"/>
+    </linearGradient>
+    <filter id="nexa-glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="2.4" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <rect width="64" height="64" rx="17" fill="#090612"/>
+  <rect x="2" y="2" width="60" height="60" rx="15" fill="none" stroke="#ff007a" stroke-opacity=".42" stroke-width="2"/>
+  <path
+    d="M32 12.5c1.6 10.4 6.1 14.9 16.5 16.5C38.1 30.6 33.6 35.1 32 45.5 30.4 35.1 25.9 30.6 15.5 29 25.9 27.4 30.4 22.9 32 12.5Z"
+    fill="url(#nexa-gradient)"
+    filter="url(#nexa-glow)"
+  />
+  <path
+    d="M47.5 39.5c.7 4.4 2.6 6.3 7 7-4.4.7-6.3 2.6-7 7-.7-4.4-2.6-6.3-7-7 4.4-.7 6.3-2.6 7-7Z"
+    fill="#ff2bbf"
+  />
+  <circle cx="17" cy="44" r="2.5" fill="#a855f7"/>
+</svg>
