@@ -19,6 +19,8 @@ import { SiteBackground } from "./components/SiteBackground";
 import { LANGUAGE_STORAGE_KEY, supportedLanguages, type Language } from "./i18n";
 import { ProductsPage } from "./pages/ProductsPage";
 import { ProjectsPage } from "./pages/ProjectsPage";
+import { ContactPage } from "./pages/ContactPage";
+import { CalculatorPage } from "./pages/CalculatorPage";
 
 type CardItem = {
   title: string;
@@ -101,6 +103,8 @@ function App() {
   const { i18n, t } = useTranslation();
   const isProductsPage = window.location.pathname.replace(/\/+$/, "") === "/products";
   const isProjectsPage = window.location.pathname.replace(/\/+$/, "") === "/projects";
+  const isContactPage = window.location.pathname.replace(/\/+$/, "") === "/contact";
+  const isCalculatorPage = window.location.pathname.replace(/\/+$/, "") === "/calculator";
 
   useEffect(() => {
     const savedLanguage = localStorage.getItem(LANGUAGE_STORAGE_KEY);
@@ -138,6 +142,10 @@ function App() {
       ? "productsPage"
       : isProjectsPage
         ? "projectsPage"
+        : isContactPage
+          ? "contactPage"
+          : isCalculatorPage
+            ? "calculatorPage"
         : "meta";
     document.title = t(`${metaPrefix}.${metaPrefix === "meta" ? "title" : "metaTitle"}`);
 
@@ -146,7 +154,14 @@ function App() {
       "content",
       t(`${metaPrefix}.${metaPrefix === "meta" ? "description" : "metaDescription"}`),
     );
-  }, [i18n.resolvedLanguage, isProductsPage, isProjectsPage, t]);
+  }, [
+    i18n.resolvedLanguage,
+    isCalculatorPage,
+    isContactPage,
+    isProductsPage,
+    isProjectsPage,
+    t,
+  ]);
 
   if (isProductsPage) {
     return <ProductsPage />;
@@ -154,6 +169,14 @@ function App() {
 
   if (isProjectsPage) {
     return <ProjectsPage />;
+  }
+
+  if (isContactPage) {
+    return <ContactPage />;
+  }
+
+  if (isCalculatorPage) {
+    return <CalculatorPage />;
   }
 
   const featureItems: CardItem[] = [

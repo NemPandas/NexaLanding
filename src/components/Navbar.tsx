@@ -7,10 +7,10 @@ export function Navbar() {
   const { t } = useTranslation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const navItems = [
-    { label: t("nav.calculator"), href: "/#calculator" },
+    { label: t("nav.calculator"), href: "/calculator" },
     { label: t("nav.projects"), href: "/projects" },
     { label: t("nav.products"), href: "/products" },
-    { label: t("nav.contact"), href: "/#contact" },
+    { label: t("nav.contact"), href: "/contact" },
   ];
 
   return (
@@ -39,7 +39,7 @@ export function Navbar() {
           <div className="ml-auto flex items-center gap-2">
             <LanguageSelector />
             <a
-              href="/#contact"
+              href="/contact"
               className="hidden h-11 items-center gap-2 rounded-xl bg-neon-pink px-5 text-sm font-bold text-white shadow-neon transition hover:-translate-y-0.5 hover:bg-neon-magenta sm:inline-flex"
             >
               {t("nav.quote")}
@@ -71,7 +71,7 @@ export function Navbar() {
                 </a>
               ))}
               <a
-                href="/#contact"
+                href="/contact"
                 onClick={() => setIsMenuOpen(false)}
                 className="mt-2 inline-flex items-center justify-center gap-2 rounded-xl bg-neon-pink px-5 py-3 text-sm font-bold text-white sm:hidden"
               >
