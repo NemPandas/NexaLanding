@@ -1,8 +1,11 @@
 import {
   ArrowRight,
   Boxes,
+  Check,
   CheckCircle2,
+  ChevronDown,
   Code2,
+  Globe2,
   Layers3,
   LayoutDashboard,
   Menu,
@@ -13,7 +16,14 @@ import {
   WandSparkles,
   Zap,
 } from "lucide-react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import type { ElementType } from "react";
+import { useTranslation } from "react-i18next";
+import {
+  LANGUAGE_STORAGE_KEY,
+  supportedLanguages,
+  type Language,
+} from "./i18n";
 
 type CardItem = {
   title: string;
@@ -27,60 +37,14 @@ type StatItem = {
   icon: ElementType;
 };
 
-const navItems = ["Főoldal", "Megoldások", "Termékek", "Rólunk", "Árak", "Kapcsolat"];
+const languageLabels: Record<Language, string> = {
+  hu: "HU",
+  en: "EN",
+};
 
-const featureItems: CardItem[] = [
-  {
-    title: "Gyors fejlesztés",
-    description: "Agilis folyamatokkal gyorsan piacra viheted az ötleted.",
-    icon: Zap,
-  },
-  {
-    title: "Modern technológia",
-    description: "A legújabb technológiákkal építünk stabil termékeket.",
-    icon: Code2,
-  },
-  {
-    title: "Skálázható megoldások",
-    description: "Növekedésre tervezett architektúrák, amik együtt nőnek veled.",
-    icon: LayoutDashboard,
-  },
-  {
-    title: "Felhasználóközpontú",
-    description: "A felhasználói élmény a középpontban van a tervezéstől indulva.",
-    icon: UsersRound,
-  },
-];
-
-const serviceItems: CardItem[] = [
-  {
-    title: "Webalkalmazások",
-    description: "Egyedi webes rendszerek, amik üzleti céljaidat szolgálják.",
-    icon: LayoutDashboard,
-  },
-  {
-    title: "SaaS termékek",
-    description: "Előfizetéses megoldások, amik skálázhatók és jövőbiztosak.",
-    icon: Layers3,
-  },
-  {
-    title: "Mobilalkalmazások",
-    description: "Nagy teljesítményű mobil appok iOS-re és Androidra.",
-    icon: Smartphone,
-  },
-  {
-    title: "UI/UX tervezés",
-    description: "Intuitív és modern felületek, amik felhasználóidat helyezik előtérbe.",
-    icon: WandSparkles,
-  },
-];
-
-const stats: StatItem[] = [
-  { value: "50+", label: "Elégedett ügyfél", icon: UsersRound },
-  { value: "120+", label: "Sikeres projekt", icon: Boxes },
-  { value: "3 év+", label: "Tapasztalat", icon: Rocket },
-  { value: "99%", label: "Ügyfél elégedettség", icon: CheckCircle2 },
-];
+function isLanguage(value: string | null): value is Language {
+  return supportedLanguages.some((language) => language === value);
+}
 
 function GlassIcon({ icon: Icon }: { icon: ElementType }) {
   return (
@@ -102,7 +66,7 @@ function FeatureCard({ item }: { item: CardItem }) {
   );
 }
 
-function ServiceCard({ item }: { item: CardItem }) {
+function ServiceCard({ item, moreLabel }: { item: CardItem; moreLabel: string }) {
   return (
     <article className="group relative overflow-hidden rounded-3xl border border-neon-pink/20 bg-white/[0.045] p-7 shadow-2xl shadow-black/30 backdrop-blur-xl transition duration-300 hover:-translate-y-2 hover:border-neon-pink/60 hover:shadow-neon-soft">
       <div className="absolute -right-16 -top-16 h-36 w-36 rounded-full bg-neon-pink/20 blur-3xl transition duration-300 group-hover:bg-neon-pink/35" />
@@ -110,10 +74,82 @@ function ServiceCard({ item }: { item: CardItem }) {
       <h3 className="mt-6 text-xl font-bold text-white">{item.title}</h3>
       <p className="mt-3 min-h-16 text-sm leading-6 text-slate-300">{item.description}</p>
       <button className="mt-7 inline-flex items-center gap-2 text-sm font-semibold text-neon-pink transition hover:gap-3 hover:text-neon-magenta">
-        Tovább
+        {moreLabel}
         <ArrowRight className="h-4 w-4" />
       </button>
     </article>
+  );
+}
+
+function LanguageSelector() {
+  const { i18n, t } = useTranslation();
+  const [isOpen, setIsOpen] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const currentLanguage: Language = i18n.resolvedLanguage === "hu" ? "hu" : "en";
+
+  useEffect(() => {
+    const closeOnOutsideClick = (event: MouseEvent) => {
+      if (!containerRef.current?.contains(event.target as Node)) {
+        setIsOpen(false);
+      }
+    };
+
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setIsOpen(false);
+    };
+
+    document.addEventListener("mousedown", closeOnOutsideClick);
+    document.addEventListener("keydown", closeOnEscape);
+
+    return () => {
+      document.removeEventListener("mousedown", closeOnOutsideClick);
+      document.removeEventListener("keydown", closeOnEscape);
+    };
+  }, []);
+
+  const selectLanguage = (language: Language) => {
+    localStorage.setItem(LANGUAGE_STORAGE_KEY, language);
+    void i18n.changeLanguage(language);
+    setIsOpen(false);
+  };
+
+  return (
+    <div ref={containerRef} className="relative">
+      <button
+        type="button"
+        aria-label={t("language.label")}
+        aria-haspopup="listbox"
+        aria-expanded={isOpen}
+        onClick={() => setIsOpen((open) => !open)}
+        className="inline-flex h-11 items-center gap-2 rounded-2xl border border-white/10 bg-white/[0.045] px-3 text-sm font-bold text-white transition hover:border-neon-pink/50 hover:text-neon-pink"
+      >
+        <Globe2 className="h-4 w-4" />
+        {languageLabels[currentLanguage]}
+        <ChevronDown className={`h-4 w-4 transition ${isOpen ? "rotate-180" : ""}`} />
+      </button>
+
+      {isOpen && (
+        <div
+          role="listbox"
+          aria-label={t("language.label")}
+          className="absolute right-0 top-14 z-50 min-w-40 overflow-hidden rounded-2xl border border-white/10 bg-[#100b1d]/95 p-1.5 shadow-2xl shadow-black/50 backdrop-blur-2xl"
+        >
+          {supportedLanguages.map((language) => (
+            <button
+              key={language}
+              type="button"
+              role="option"
+              aria-selected={currentLanguage === language}
+              onClick={() => selectLanguage(language)}
+              className="flex w-full items-center justify-between gap-4 rounded-xl px-3 py-2.5 text-left text-sm text-slate-200 transition hover:bg-white/10 hover:text-white"
+            >
+              <span>{t(`language.${language}`)}</span>
+              {currentLanguage === language && <Check className="h-4 w-4 text-neon-pink" />}
+            </button>
+          ))}
+        </div>
+      )}
+    </div>
   );
 }
 
@@ -132,6 +168,86 @@ function NeonOrb() {
 }
 
 function App() {
+  const { i18n, t } = useTranslation();
+
+  useEffect(() => {
+    const savedLanguage = localStorage.getItem(LANGUAGE_STORAGE_KEY);
+    if (isLanguage(savedLanguage)) {
+      void i18n.changeLanguage(savedLanguage);
+      return;
+    }
+
+    const controller = new AbortController();
+    const fallbackLanguage: Language = navigator.language.toLowerCase().startsWith("hu") ? "hu" : "en";
+
+    fetch("https://ipapi.co/country/", {
+      signal: controller.signal,
+      headers: { Accept: "text/plain" },
+    })
+      .then((response) => {
+        if (!response.ok) throw new Error("Country lookup failed");
+        return response.text();
+      })
+      .then((countryCode) => {
+        void i18n.changeLanguage(countryCode.trim().toUpperCase() === "HU" ? "hu" : "en");
+      })
+      .catch((error: unknown) => {
+        if (error instanceof DOMException && error.name === "AbortError") return;
+        void i18n.changeLanguage(fallbackLanguage);
+      });
+
+    return () => controller.abort();
+  }, [i18n]);
+
+  useEffect(() => {
+    const language: Language = i18n.resolvedLanguage === "hu" ? "hu" : "en";
+    document.documentElement.lang = language;
+    document.title = t("meta.title");
+
+    const description = document.querySelector<HTMLMetaElement>('meta[name="description"]');
+    description?.setAttribute("content", t("meta.description"));
+  }, [i18n.resolvedLanguage, t]);
+
+  const navItems = useMemo(
+    () => [
+      { label: t("nav.solutions"), href: "#home" },
+      { label: t("nav.products"), href: "#services" },
+      { label: t("nav.about"), href: "#services" },
+      { label: t("nav.pricing"), href: "#services" },
+      { label: t("nav.contact"), href: "#contact" },
+    ],
+    [t, i18n.resolvedLanguage],
+  );
+
+  const featureItems: CardItem[] = [
+    { title: t("features.fast.title"), description: t("features.fast.description"), icon: Zap },
+    { title: t("features.modern.title"), description: t("features.modern.description"), icon: Code2 },
+    {
+      title: t("features.scalable.title"),
+      description: t("features.scalable.description"),
+      icon: LayoutDashboard,
+    },
+    {
+      title: t("features.userCentered.title"),
+      description: t("features.userCentered.description"),
+      icon: UsersRound,
+    },
+  ];
+
+  const serviceItems: CardItem[] = [
+    { title: t("services.web.title"), description: t("services.web.description"), icon: LayoutDashboard },
+    { title: t("services.saas.title"), description: t("services.saas.description"), icon: Layers3 },
+    { title: t("services.mobile.title"), description: t("services.mobile.description"), icon: Smartphone },
+    { title: t("services.design.title"), description: t("services.design.description"), icon: WandSparkles },
+  ];
+
+  const stats: StatItem[] = [
+    { value: "11+", label: t("stats.clients"), icon: UsersRound },
+    { value: "20+", label: t("stats.projects"), icon: Boxes },
+    { value: t("stats.experienceValue"), label: t("stats.experience"), icon: Rocket },
+    { value: "100%", label: t("stats.satisfaction"), icon: CheckCircle2 },
+  ];
+
   return (
     <main className="min-h-screen overflow-hidden bg-midnight text-white">
       <div className="fixed inset-0 -z-10 bg-[radial-gradient(circle_at_65%_28%,rgba(255,0,122,0.26),transparent_28%),radial-gradient(circle_at_24%_80%,rgba(168,85,247,0.16),transparent_30%),linear-gradient(135deg,#05030d_0%,#09071a_44%,#16051f_100%)]" />
@@ -148,20 +264,26 @@ function App() {
           <div className="hidden items-center gap-9 text-sm font-medium text-slate-200 lg:flex">
             {navItems.map((item, index) => (
               <a
-                key={item}
-                href={index === 0 ? "#home" : "#services"}
+                key={item.label}
+                href={item.href}
                 className={`transition hover:text-neon-pink ${index === 0 ? "text-neon-pink" : ""}`}
               >
-                {item}
+                {item.label}
               </a>
             ))}
           </div>
-          <button className="hidden rounded-2xl border border-neon-pink/55 px-6 py-3 text-sm font-semibold text-neon-pink shadow-neon transition hover:-translate-y-0.5 hover:bg-neon-pink hover:text-white md:inline-flex">
-            Kezdjük el
-          </button>
-          <button aria-label="Menü megnyitása" className="rounded-2xl border border-white/10 p-3 text-white lg:hidden">
-            <Menu className="h-5 w-5" />
-          </button>
+          <div className="ml-auto flex items-center gap-2 lg:ml-0">
+            <LanguageSelector />
+            <button className="hidden rounded-2xl border border-neon-pink/55 px-6 py-3 text-sm font-semibold text-neon-pink shadow-neon transition hover:-translate-y-0.5 hover:bg-neon-pink hover:text-white md:inline-flex">
+              {t("nav.start")}
+            </button>
+            <button
+              aria-label={t("nav.openMenu")}
+              className="rounded-2xl border border-white/10 p-3 text-white lg:hidden"
+            >
+              <Menu className="h-5 w-5" />
+            </button>
+          </div>
         </nav>
       </header>
 
@@ -169,28 +291,26 @@ function App() {
         <div>
           <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-4 py-2 text-xs font-bold uppercase tracking-[0.18em] text-pink-200 backdrop-blur-xl">
             <span className="h-2 w-2 rounded-full bg-neon-pink shadow-neon" />
-            Digitális termék stúdió
+            {t("hero.eyebrow")}
           </div>
           <h1 className="mt-7 max-w-3xl text-5xl font-black leading-[1.02] tracking-normal sm:text-6xl lg:text-7xl">
-            <span className="block text-neon-pink drop-shadow-[0_0_26px_rgba(255,0,122,0.35)]">Digitális termékek.</span>
-            <span className="block text-white">Valódi érték.</span>
+            <span className="block text-neon-pink drop-shadow-[0_0_26px_rgba(255,0,122,0.35)]">{t("hero.titlePrimary")}</span>
+            <span className="block text-white">{t("hero.titleSecondary")}</span>
           </h1>
-          <p className="mt-7 max-w-2xl text-lg leading-8 text-slate-300">
-            A Nexa segít ötleteidet modern, skálázható és felhasználóközpontú digitális termékekké formálni.
-          </p>
+          <p className="mt-7 max-w-2xl text-lg leading-8 text-slate-300">{t("hero.description")}</p>
           <div className="mt-9 flex flex-col gap-4 sm:flex-row">
             <a
               href="#contact"
               className="inline-flex items-center justify-center gap-3 rounded-2xl bg-neon-pink px-8 py-4 text-sm font-bold text-white shadow-neon transition hover:-translate-y-1 hover:bg-neon-magenta hover:shadow-[0_0_48px_rgba(255,0,122,0.75)]"
             >
-              Kezdjük el a projektet
+              {t("hero.startProject")}
               <ArrowRight className="h-5 w-5" />
             </a>
             <a
               href="#services"
               className="inline-flex items-center justify-center gap-3 rounded-2xl border border-white/10 bg-white/[0.045] px-8 py-4 text-sm font-bold text-white backdrop-blur-xl transition hover:-translate-y-1 hover:border-neon-pink/50 hover:text-neon-pink hover:shadow-neon-soft"
             >
-              Nézd meg a munkáinkat
+              {t("hero.viewWork")}
               <span className="grid h-6 w-6 place-items-center rounded-full border border-neon-pink/50 text-neon-pink">
                 <ArrowRight className="h-3.5 w-3.5" />
               </span>
@@ -212,12 +332,12 @@ function App() {
 
       <section id="services" className="mx-auto max-w-7xl px-6 py-20">
         <div className="text-center">
-          <p className="text-xs font-black uppercase tracking-[0.28em] text-neon-pink">Megoldásaink</p>
-          <h2 className="mt-3 text-4xl font-black tracking-normal text-white sm:text-5xl">Miben segíthetünk?</h2>
+          <p className="text-xs font-black uppercase tracking-[0.28em] text-neon-pink">{t("services.eyebrow")}</p>
+          <h2 className="mt-3 text-4xl font-black tracking-normal text-white sm:text-5xl">{t("services.title")}</h2>
         </div>
         <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
           {serviceItems.map((item) => (
-            <ServiceCard key={item.title} item={item} />
+            <ServiceCard key={item.title} item={item} moreLabel={t("services.more")} />
           ))}
         </div>
       </section>
