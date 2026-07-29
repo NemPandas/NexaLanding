@@ -72,24 +72,24 @@ function ServiceCard({ item, moreLabel }: { item: CardItem; moreLabel: string })
 function NeonOrb() {
   return (
     <div className="relative mx-auto aspect-square w-full max-w-[500px]">
-      <div className="absolute inset-[8%] rounded-full border border-white/10 bg-white/[0.035] shadow-[inset_0_0_80px_rgba(255,0,122,.08),0_30px_100px_rgba(0,0,0,.45)] backdrop-blur-sm" />
+      <div className="hero-orb-pulse absolute inset-[8%] rounded-full border border-white/10 bg-white/[0.035] shadow-[inset_0_0_80px_rgba(255,0,122,.08),0_30px_100px_rgba(0,0,0,.45)] backdrop-blur-sm" />
       <div className="absolute inset-[16%] animate-[spin_24s_linear_infinite] rounded-full border border-dashed border-neon-pink/35" />
       <div className="absolute inset-[27%] animate-[spin_18s_linear_infinite_reverse] rounded-full border border-neon-violet/35" />
-      <div className="absolute inset-[34%] rounded-[2rem] border border-neon-pink/50 bg-[#10091d]/85 shadow-neon backdrop-blur-xl [transform:rotate(45deg)]">
-        <div className="absolute inset-[18%] rounded-2xl bg-neon-pink shadow-[0_0_55px_rgba(255,0,122,.75)]" />
+      <div className="hero-core-pulse absolute inset-[34%] rounded-[2rem] border border-neon-pink/50 bg-[#10091d]/85 shadow-neon backdrop-blur-xl [transform:rotate(45deg)]">
+        <div className="hero-core-glow absolute inset-[18%] rounded-2xl bg-neon-pink shadow-[0_0_55px_rgba(255,0,122,.75)]" />
       </div>
-      <div className="absolute left-[7%] top-[25%] rounded-2xl border border-white/10 bg-[#100b1d]/80 px-4 py-3 shadow-2xl backdrop-blur-xl">
+      <div className="hero-float-card absolute left-[7%] top-[25%] rounded-2xl border border-white/10 bg-[#100b1d]/80 px-4 py-3 shadow-2xl backdrop-blur-xl">
         <div className="flex items-center gap-2">
           <span className="h-2 w-2 rounded-full bg-emerald-400 shadow-[0_0_12px_rgba(52,211,153,.8)]" />
           <span className="h-1.5 w-16 rounded-full bg-white/20" />
         </div>
         <div className="mt-3 h-1.5 w-24 rounded-full bg-neon-pink/60" />
       </div>
-      <div className="absolute bottom-[13%] right-[2%] grid h-20 w-20 place-items-center rounded-3xl border border-neon-pink/30 bg-neon-pink/10 text-neon-pink shadow-neon backdrop-blur-xl">
+      <div className="hero-float-code absolute bottom-[13%] right-[2%] grid h-20 w-20 place-items-center rounded-3xl border border-neon-pink/30 bg-neon-pink/10 text-neon-pink shadow-neon backdrop-blur-xl">
         <Code2 className="h-8 w-8" />
       </div>
-      <span className="absolute right-[9%] top-[16%] h-3 w-3 rounded-full bg-neon-pink shadow-neon" />
-      <span className="absolute bottom-[21%] left-[14%] h-2 w-2 rounded-full bg-neon-violet shadow-[0_0_18px_rgba(168,85,247,.9)]" />
+      <span className="hero-float-dot-pink absolute right-[9%] top-[16%] h-3 w-3 rounded-full bg-neon-pink shadow-neon" />
+      <span className="hero-float-dot-violet absolute bottom-[21%] left-[14%] h-2 w-2 rounded-full bg-neon-violet shadow-[0_0_18px_rgba(168,85,247,.9)]" />
       <div className="absolute inset-[15%] rounded-full bg-neon-pink/10 blur-3xl" />
     </div>
   );
