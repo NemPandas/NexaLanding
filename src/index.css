@@ -68,6 +68,26 @@ body {
   }
 }
 
+@keyframes hero-float-database {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(2deg);
+  }
+  50% {
+    transform: translate3d(-9px, -13px, 0) rotate(-2deg);
+  }
+}
+
+@keyframes hero-float-mobile {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(-2deg);
+  }
+  50% {
+    transform: translate3d(11px, -10px, 0) rotate(2.5deg);
+  }
+}
+
 @keyframes hero-orb-pulse {
   0%,
   100% {
@@ -118,6 +138,14 @@ body {
   animation: hero-float-dot-violet 5.6s ease-in-out 1.1s infinite;
 }
 
+.hero-float-database {
+  animation: hero-float-database 6.8s ease-in-out 1.4s infinite;
+}
+
+.hero-float-mobile {
+  animation: hero-float-mobile 7.2s ease-in-out 0.2s infinite;
+}
+
 .hero-orb-pulse {
   animation: hero-orb-pulse 6s ease-in-out infinite;
   transform-origin: center;
@@ -137,6 +165,8 @@ body {
   .hero-float-code,
   .hero-float-dot-pink,
   .hero-float-dot-violet,
+  .hero-float-database,
+  .hero-float-mobile,
   .hero-orb-pulse,
   .hero-core-pulse,
   .hero-core-glow {

@@ -148,6 +148,119 @@ const resources = {
             "Az összeg tájékoztató becslés. A végleges ajánlatot a pontos követelmények egyeztetése után adjuk.",
         },
       },
+      footer: {
+        description:
+          "Modern, skálázható digitális termékeket tervezünk és fejlesztünk az ötlettől a működő megoldásig.",
+        navigation: "Oldalak",
+        information: "Információk",
+        getInTouch: "Beszéljünk a projektedről",
+        socialComingSoon: "hamarosan",
+        rights: "Minden jog fenntartva.",
+        madeWith: "Tervezve és fejlesztve a Nexánál.",
+        links: {
+          calculator: "Kalkulátor",
+          projects: "Projektek",
+          products: "Termékek",
+          contact: "Kapcsolat",
+        },
+        legal: {
+          privacy: "Adatvédelem",
+          terms: "Általános Szerződési Feltételek",
+          cookies: "Cookie-tájékoztató",
+        },
+      },
+      legalPages: {
+        eyebrow: "Jogi információk",
+        draftNotice:
+          "Ez az oldal szerkeszthető tervezet. A közzététel előtt ki kell egészíteni a hivatalos cégadatokkal, és jogi szakértővel ellenőriztetni kell.",
+        privacy: {
+          metaTitle: "Adatvédelem – Nexa",
+          metaDescription: "A Nexa adatkezelési tájékoztatójának szerkeszthető tervezete.",
+          title: "Adatkezelési tájékoztató",
+          intro:
+            "Összefoglaló arról, hogy a Nexa weboldala milyen adatokat használhat, milyen célból és milyen választási lehetőségeid vannak.",
+          sections: {
+            first: {
+              title: "Az adatkezelő adatai",
+              content:
+                "Név: [Hivatalos cégnév]\nSzékhely: [Hivatalos cím]\nE-mail: [Kapcsolati e-mail]\nAdószám / nyilvántartási szám: [Kitöltendő]",
+            },
+            second: {
+              title: "Kapcsolatfelvételi adatok",
+              content:
+                "A kapcsolatfelvételi űrlapon megadott név, e-mail-cím, telefonszám és üzenet kizárólag a megkeresés megválaszolásához és az esetleges projekt egyeztetéséhez használható.",
+            },
+            third: {
+              title: "Technikai és nyelvi adatok",
+              content:
+                "A weboldal a kiválasztott nyelvet a böngésző helyi tárhelyén tárolja. Az automatikus nyelvválasztáshoz külső országkód-lekérdezés használható, amely a látogató IP-címe alapján határozza meg az országot.",
+            },
+            fourth: {
+              title: "Jogok és kapcsolat",
+              content:
+                "Az érintett kérheti a rá vonatkozó adatokhoz való hozzáférést, azok helyesbítését vagy törlését, illetve tájékoztatást kérhet az adatkezelésről. A részletes eljárást és a felügyeleti hatóság adatait a végleges változatban kell rögzíteni.",
+            },
+          },
+        },
+        terms: {
+          metaTitle: "ÁSZF – Nexa",
+          metaDescription: "A Nexa általános szerződési feltételeinek szerkeszthető tervezete.",
+          title: "Általános Szerződési Feltételek",
+          intro:
+            "A Nexa digitális tervezési, fejlesztési és üzemeltetési szolgáltatásaira vonatkozó alapvető feltételek tervezete.",
+          sections: {
+            first: {
+              title: "Szolgáltató adatai",
+              content:
+                "Szolgáltató: [Hivatalos cégnév]\nSzékhely: [Hivatalos cím]\nKapcsolat: [E-mail és telefonszám]\nNyilvántartási adatok: [Kitöltendő]",
+            },
+            second: {
+              title: "Ajánlat és szerződés",
+              content:
+                "A weboldalon megjelenő kalkuláció tájékoztató jellegű becslés. A pontos feladatokat, határidőket, díjakat és fizetési ütemezést minden projekt esetén egyedi írásos ajánlat és szerződés rögzíti.",
+            },
+            third: {
+              title: "Teljesítés és módosítások",
+              content:
+                "A projekt átadási feltételeit, a visszajelzési köröket, az ügyfél által biztosítandó anyagokat és az eredeti terjedelmen felüli módosítások díjazását az egyedi megállapodás tartalmazza.",
+            },
+            fourth: {
+              title: "Üzemeltetés és felelősség",
+              content:
+                "Az üzemeltetési csomag pontos tartalmát, rendelkezésre állását, tárhelyét, támogatását és havi módosítási keretét külön szolgáltatási megállapodásban kell rögzíteni. A végleges felelősségi és felmondási szabályok jogi ellenőrzést igényelnek.",
+            },
+          },
+        },
+        cookies: {
+          metaTitle: "Cookie-tájékoztató – Nexa",
+          metaDescription: "A Nexa cookie- és böngészőtárolási tájékoztatójának szerkeszthető tervezete.",
+          title: "Cookie- és tárhelytájékoztató",
+          intro:
+            "Áttekintés a weboldal által jelenleg használt böngészőtárolási megoldásokról és azok céljáról.",
+          sections: {
+            first: {
+              title: "Mi az a cookie?",
+              content:
+                "A cookie egy kis adatfájl, amelyet a weboldal a böngészőben tárolhat. Hasonló célra a böngésző helyi tárhelye is használható. Ezek segíthetnek egy beállítás megjegyzésében vagy a weboldal működésében.",
+            },
+            second: {
+              title: "Nyelvi beállítás",
+              content:
+                "A Nexa weboldala a kézzel kiválasztott HU vagy EN nyelvet a böngésző helyi tárhelyén őrzi meg, hogy a következő látogatáskor is ugyanazt a nyelvet jelenítse meg.",
+            },
+            third: {
+              title: "Külső szolgáltatások",
+              content:
+                "Az automatikus országfelismeréshez külső IP-országkód szolgáltatás használható. Ha később analitikai, marketing- vagy beágyazott szolgáltatások kerülnek az oldalra, ezt a tájékoztatót és a hozzájárulás-kezelést frissíteni kell.",
+            },
+            fourth: {
+              title: "Beállítások kezelése",
+              content:
+                "A helyi adatok a böngésző beállításaiban törölhetők. A szükséges és opcionális tárolók pontos listáját, megőrzési idejét és szolgáltatóját a végleges változatban kell feltüntetni.",
+            },
+          },
+        },
+      },
       language: {
         label: "Nyelv kiválasztása",
         hu: "Magyar",
@@ -359,6 +472,119 @@ const resources = {
           monthlyShort: "Monthly",
           notice:
             "This amount is an indicative estimate. The final quote is provided after reviewing the exact requirements.",
+        },
+      },
+      footer: {
+        description:
+          "We design and develop modern, scalable digital products from the first idea to a working solution.",
+        navigation: "Pages",
+        information: "Information",
+        getInTouch: "Let's discuss your project",
+        socialComingSoon: "coming soon",
+        rights: "All rights reserved.",
+        madeWith: "Designed and developed at Nexa.",
+        links: {
+          calculator: "Calculator",
+          projects: "Projects",
+          products: "Products",
+          contact: "Contact",
+        },
+        legal: {
+          privacy: "Privacy",
+          terms: "Terms and Conditions",
+          cookies: "Cookie notice",
+        },
+      },
+      legalPages: {
+        eyebrow: "Legal information",
+        draftNotice:
+          "This page is an editable draft. It must be completed with official company details and reviewed by a legal professional before publication.",
+        privacy: {
+          metaTitle: "Privacy – Nexa",
+          metaDescription: "An editable draft of Nexa's privacy notice.",
+          title: "Privacy notice",
+          intro:
+            "A summary of what data the Nexa website may use, why it may be used, and what choices are available to you.",
+          sections: {
+            first: {
+              title: "Data controller",
+              content:
+                "Name: [Official company name]\nRegistered office: [Official address]\nEmail: [Contact email]\nRegistration / tax number: [To be completed]",
+            },
+            second: {
+              title: "Contact information",
+              content:
+                "The name, email address, phone number, and message entered in the contact form may only be used to answer the inquiry and discuss a potential project.",
+            },
+            third: {
+              title: "Technical and language data",
+              content:
+                "The website stores the selected language in the browser's local storage. An external country-code lookup may be used for automatic language selection based on the visitor's IP address.",
+            },
+            fourth: {
+              title: "Your rights and contact",
+              content:
+                "A person may request access to, correction of, or deletion of their personal data and may request information about its processing. The detailed procedure and supervisory authority information must be added to the final version.",
+            },
+          },
+        },
+        terms: {
+          metaTitle: "Terms and Conditions – Nexa",
+          metaDescription: "An editable draft of Nexa's general terms and conditions.",
+          title: "Terms and Conditions",
+          intro:
+            "Draft baseline terms for Nexa's digital design, development, and maintenance services.",
+          sections: {
+            first: {
+              title: "Service provider",
+              content:
+                "Provider: [Official company name]\nRegistered office: [Official address]\nContact: [Email and phone]\nRegistration details: [To be completed]",
+            },
+            second: {
+              title: "Quotes and agreements",
+              content:
+                "Calculations shown on the website are indicative estimates. The exact scope, deadlines, fees, and payment schedule of every project are defined in an individual written quote and agreement.",
+            },
+            third: {
+              title: "Delivery and changes",
+              content:
+                "Delivery conditions, feedback rounds, materials supplied by the client, and pricing for changes outside the original scope are defined in the individual agreement.",
+            },
+            fourth: {
+              title: "Maintenance and liability",
+              content:
+                "The exact maintenance package, availability, hosting, support, and monthly change allowance must be defined in a separate service agreement. Final liability and termination rules require legal review.",
+            },
+          },
+        },
+        cookies: {
+          metaTitle: "Cookie notice – Nexa",
+          metaDescription: "An editable draft of Nexa's cookie and browser-storage notice.",
+          title: "Cookie and storage notice",
+          intro:
+            "An overview of the browser-storage technologies currently used by the website and their purposes.",
+          sections: {
+            first: {
+              title: "What is a cookie?",
+              content:
+                "A cookie is a small data file a website may store in the browser. Browser local storage can serve a similar purpose. These technologies can remember a preference or support website functionality.",
+            },
+            second: {
+              title: "Language preference",
+              content:
+                "The Nexa website stores the manually selected HU or EN language in browser local storage so the same language can be shown on the next visit.",
+            },
+            third: {
+              title: "External services",
+              content:
+                "An external IP country-code service may be used for automatic country detection. If analytics, marketing, or embedded services are added later, this notice and consent management must be updated.",
+            },
+            fourth: {
+              title: "Managing settings",
+              content:
+                "Local data can be deleted in the browser settings. The exact list, retention period, and provider of required and optional storage technologies must be included in the final version.",
+            },
+          },
         },
       },
       language: {

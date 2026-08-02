@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { Footer } from "./Footer";
 
 export function SiteBackground({ children }: { children: ReactNode }) {
   return (
@@ -14,7 +15,10 @@ export function SiteBackground({ children }: { children: ReactNode }) {
         <div className="absolute right-[5%] top-[34rem] h-px w-56 -rotate-[38deg] bg-gradient-to-r from-transparent via-neon-violet/50 to-transparent" />
       </div>
 
-      <div className="relative z-10">{children}</div>
+      <div className="relative z-10">
+        {children}
+        <Footer />
+      </div>
     </div>
   );
 }

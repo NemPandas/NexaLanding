@@ -3,6 +3,7 @@ import {
   Boxes,
   CheckCircle2,
   Code2,
+  Database,
   Layers3,
   LayoutDashboard,
   Rocket,
@@ -21,6 +22,7 @@ import { ProductsPage } from "./pages/ProductsPage";
 import { ProjectsPage } from "./pages/ProjectsPage";
 import { ContactPage } from "./pages/ContactPage";
 import { CalculatorPage } from "./pages/CalculatorPage";
+import { LegalPage, type LegalPageType } from "./pages/LegalPage";
 
 type CardItem = {
   title: string;
@@ -92,8 +94,14 @@ function NeonOrb() {
       <div className="hero-float-code absolute bottom-[13%] right-[2%] grid h-20 w-20 place-items-center rounded-3xl border border-neon-pink/30 bg-neon-pink/10 text-neon-pink shadow-neon backdrop-blur-xl">
         <Code2 className="h-8 w-8" />
       </div>
+      <div className="hero-float-database absolute right-[4%] top-[21%] grid h-16 w-16 place-items-center rounded-2xl border border-neon-violet/30 bg-neon-violet/10 text-neon-violet shadow-[0_0_34px_rgba(168,85,247,.25)] backdrop-blur-xl">
+        <Database className="h-7 w-7" />
+      </div>
+      <div className="hero-float-mobile absolute bottom-[10%] left-[8%] grid h-[4.5rem] w-[4.5rem] place-items-center rounded-3xl border border-cyan-300/25 bg-cyan-300/[0.07] text-cyan-300 shadow-[0_0_34px_rgba(103,232,249,.18)] backdrop-blur-xl">
+        <Smartphone className="h-7 w-7" />
+      </div>
       <span className="hero-float-dot-pink absolute right-[9%] top-[16%] h-3 w-3 rounded-full bg-neon-pink shadow-neon" />
-      <span className="hero-float-dot-violet absolute bottom-[21%] left-[14%] h-2 w-2 rounded-full bg-neon-violet shadow-[0_0_18px_rgba(168,85,247,.9)]" />
+      <span className="hero-float-dot-violet absolute left-[31%] top-[7%] h-2 w-2 rounded-full bg-neon-violet shadow-[0_0_18px_rgba(168,85,247,.9)]" />
       <div className="absolute inset-[15%] rounded-full bg-neon-pink/10 blur-3xl" />
     </div>
   );
@@ -105,6 +113,9 @@ function App() {
   const isProjectsPage = window.location.pathname.replace(/\/+$/, "") === "/projects";
   const isContactPage = window.location.pathname.replace(/\/+$/, "") === "/contact";
   const isCalculatorPage = window.location.pathname.replace(/\/+$/, "") === "/calculator";
+  const legalPageType = (
+    ["privacy", "terms", "cookies"] as LegalPageType[]
+  ).find((page) => window.location.pathname.replace(/\/+$/, "") === `/${page}`);
 
   useEffect(() => {
     const savedLanguage = localStorage.getItem(LANGUAGE_STORAGE_KEY);
@@ -146,6 +157,8 @@ function App() {
           ? "contactPage"
           : isCalculatorPage
             ? "calculatorPage"
+            : legalPageType
+              ? `legalPages.${legalPageType}`
         : "meta";
     document.title = t(`${metaPrefix}.${metaPrefix === "meta" ? "title" : "metaTitle"}`);
 
@@ -160,6 +173,7 @@ function App() {
     isContactPage,
     isProductsPage,
     isProjectsPage,
+    legalPageType,
     t,
   ]);
 
@@ -177,6 +191,10 @@ function App() {
 
   if (isCalculatorPage) {
     return <CalculatorPage />;
+  }
+
+  if (legalPageType) {
+    return <LegalPage type={legalPageType} />;
   }
 
   const featureItems: CardItem[] = [
