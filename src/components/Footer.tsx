@@ -7,6 +7,7 @@ import {
   socialLinks,
   type SocialPlatform,
 } from "../data/footer";
+import { localizePath } from "../lib/locale";
 
 const socialIcons: Record<SocialPlatform, ElementType> = {
   github: Github,
@@ -23,7 +24,7 @@ export function Footer() {
       <div className="mx-auto max-w-7xl px-6 pb-8 pt-12">
         <div className="grid gap-10 border-b border-white/[0.08] pb-10 md:grid-cols-[1.4fr_0.8fr_0.8fr]">
           <div className="max-w-md">
-            <a href="/" className="inline-flex items-center gap-3 text-xl font-black tracking-[0.14em] text-white">
+            <a href={localizePath("/")} className="inline-flex items-center gap-3 text-xl font-black tracking-[0.14em] text-white">
               <span className="grid h-10 w-10 place-items-center rounded-xl border border-neon-pink/45 bg-neon-pink/10 text-neon-pink shadow-neon">
                 <Sparkles className="h-5 w-5" />
               </span>
@@ -68,7 +69,7 @@ export function Footer() {
               {footerNavigation.map((link) => (
                 <a
                   key={link.href}
-                  href={link.href}
+                  href={localizePath(link.href)}
                   className="w-fit text-sm text-slate-400 transition hover:translate-x-1 hover:text-neon-pink"
                 >
                   {t(link.labelKey)}
@@ -83,7 +84,7 @@ export function Footer() {
               {footerLegalLinks.map((link) => (
                 <a
                   key={link.href}
-                  href={link.href}
+                  href={localizePath(link.href)}
                   className="w-fit text-sm text-slate-400 transition hover:translate-x-1 hover:text-neon-pink"
                 >
                   {t(link.labelKey)}
@@ -91,7 +92,7 @@ export function Footer() {
               ))}
             </nav>
             <a
-              href="/contact"
+              href={localizePath("/contact")}
               className="mt-6 inline-flex items-center gap-2 text-sm font-bold text-neon-pink transition hover:text-neon-magenta"
             >
               {t("footer.getInTouch")}

@@ -9,13 +9,13 @@ const resources = {
   hu: {
     translation: {
       meta: {
-        title: "Nexa – Digitális termékstúdió",
+        title: "Webfejlesztés és egyedi online rendszerek – Nexa",
         description:
-          "A Nexa modern webalkalmazásokat, SaaS termékeket és mobilalkalmazásokat tervez és fejleszt.",
+          "Egyedi weboldalak, webáruházak, előfizetéses platformok és webalkalmazások tervezése és fejlesztése.",
       },
       productsPage: {
-        metaTitle: "Termékek – Nexa",
-        metaDescription: "Fedezd fel a Nexa saját digitális termékeit és fejlesztői eszközeit.",
+        metaTitle: "Digitális termékek és fejlesztői eszközök – Nexa",
+        metaDescription: "Fedezd fel a Nexa saját digitális termékeit és fejlesztői eszközeit, köztük a Nexa CLI-t.",
         eyebrow: "Saját termékeink",
         title: "Eszközök, amelyeket mi is szívesen használunk.",
         description:
@@ -33,8 +33,8 @@ const resources = {
         },
       },
       projectsPage: {
-        metaTitle: "Projektek – Nexa",
-        metaDescription: "Ismerd meg a Nexa válogatott webes és digitális projektjeit.",
+        metaTitle: "Webfejlesztési projektek és referenciák – Nexa",
+        metaDescription: "Ismerd meg a Nexa válogatott webáruház-, webalkalmazás- és digitális projektjeit.",
         eyebrow: "Kiemelt munkáink",
         title: "Digitális élmények, valódi üzleti célokra.",
         description:
@@ -52,8 +52,8 @@ const resources = {
         },
       },
       contactPage: {
-        metaTitle: "Kapcsolat – Nexa",
-        metaDescription: "Vedd fel a kapcsolatot a Nexával, és mesélj a következő digitális projektedről.",
+        metaTitle: "Kapcsolat és projektajánlat – Nexa",
+        metaDescription: "Vedd fel a kapcsolatot a Nexával, és kérj személyre szabott ajánlatot weboldaladhoz vagy alkalmazásodhoz.",
         eyebrow: "Kapcsolat",
         title: "Építsünk valami igazán jót együtt.",
         description:
@@ -74,8 +74,8 @@ const resources = {
         },
       },
       calculatorPage: {
-        metaTitle: "Árkalkulátor – Nexa",
-        metaDescription: "Állítsd össze digitális projektedet, és nézd meg a becsült egyszeri és havi költségeket.",
+        metaTitle: "Weboldal és alkalmazás árkalkulátor – Nexa",
+        metaDescription: "Állítsd össze digitális projektedet, és nézd meg a becsült egyszeri fejlesztési és havi üzemeltetési költségeket.",
         eyebrow: "Projektkalkulátor",
         title: "Mennyibe kerül az ötleted megvalósítása?",
         description:
@@ -150,7 +150,7 @@ const resources = {
       },
       footer: {
         description:
-          "Modern, skálázható digitális termékeket tervezünk és fejlesztünk az ötlettől a működő megoldásig.",
+          "Üzleti weboldalakat, előfizetéses platformokat, webáruházakat és egyedi webalkalmazásokat tervezünk és fejlesztünk.",
         navigation: "Oldalak",
         information: "Információk",
         getInTouch: "Beszéljünk a projektedről",
@@ -276,51 +276,51 @@ const resources = {
         closeMenu: "Menü bezárása",
       },
       hero: {
-        eyebrow: "Digitális termékstúdió",
-        titlePrimary: "Digitális termékek.",
-        titleSecondary: "Valódi érték.",
+        eyebrow: "Webfejlesztő stúdió",
+        titlePrimary: "Weboldalból ügyfelek.",
+        titleSecondary: "Ötletből működő rendszer.",
         description:
-          "A Nexa segít ötleteidet modern, skálázható és felhasználóközpontú digitális termékekké formálni.",
-        startProject: "Kezdjük el a projektet",
-        viewWork: "Nézd meg a munkáinkat",
+          "Gyors, átlátható és skálázható webes megoldásokat építünk, amelyek támogatják a vállalkozásod működését és növekedését.",
+        startProject: "Beszéljük át a projektet",
+        viewWork: "Nézd meg a referenciáinkat",
       },
       features: {
         fast: {
-          title: "Gyors fejlesztés",
-          description: "Agilis folyamatokkal gyorsan piacra viheted az ötleted.",
+          title: "Célorientált fejlesztés",
+          description: "Az üzleti célokra és a valóban szükséges funkciókra koncentrálunk.",
         },
         modern: {
-          title: "Modern technológia",
-          description: "A legújabb technológiákkal építünk stabil termékeket.",
+          title: "Modern és gyors",
+          description: "Gyorsan betöltődő, biztonságos és hosszú távon karbantartható rendszereket építünk.",
         },
         scalable: {
-          title: "Skálázható megoldások",
-          description: "Növekedésre tervezett architektúrák, amelyek együtt nőnek veled.",
+          title: "Skálázható rendszeralapok",
+          description: "Olyan architektúrát tervezünk, amely a felhasználóiddal és a vállalkozásoddal együtt nő.",
         },
         userCentered: {
-          title: "Felhasználóközpontú",
-          description: "A felhasználói élmény már a tervezés kezdetétől a középpontban van.",
+          title: "Konverzióközpontú UX",
+          description: "Átlátható felületekkel segítjük a látogatókat a következő lépés megtételében.",
         },
       },
       services: {
-        eyebrow: "Megoldásaink",
-        title: "Miben segíthetünk?",
-        more: "Tovább",
+        eyebrow: "Webes szolgáltatásaink",
+        title: "Mit építünk?",
+        more: "Részletek",
         web: {
-          title: "Webalkalmazások",
-          description: "Egyedi webes rendszerek, amelyek az üzleti céljaidat szolgálják.",
+          title: "Üzleti weboldalak",
+          description: "Gyors, reszponzív és keresőbarát weboldalak, amelyek ügyfeleket szereznek a vállalkozásodnak.",
         },
-        saas: {
-          title: "SaaS termékek",
-          description: "Skálázható és jövőbiztos előfizetéses megoldások.",
+        platforms: {
+          title: "Előfizetéses platformok",
+          description: "Előfizetéses, többfelhasználós webes rendszerek stabil és bővíthető technikai alapokkal.",
         },
         mobile: {
-          title: "Mobilalkalmazások",
-          description: "Nagy teljesítményű mobilalkalmazások iOS-re és Androidra.",
+          title: "Webáruházak",
+          description: "Átlátható, gyors és könnyen kezelhető webshopok fizetési és üzleti integrációkkal.",
         },
         design: {
-          title: "UI/UX tervezés",
-          description: "Intuitív, modern felületek, amelyek a felhasználóidat helyezik előtérbe.",
+          title: "Egyedi webalkalmazások",
+          description: "Adminfelületek, ügyfélportálok és belső rendszerek a saját üzleti folyamataidra szabva.",
         },
       },
       stats: {
@@ -335,13 +335,13 @@ const resources = {
   en: {
     translation: {
       meta: {
-        title: "Nexa – Digital product studio",
+        title: "Web development and custom online platforms – Nexa",
         description:
-          "Nexa designs and develops modern web applications, SaaS products, and mobile apps.",
+          "Design and development of custom websites, online stores, subscription platforms, and web applications.",
       },
       productsPage: {
-        metaTitle: "Products – Nexa",
-        metaDescription: "Discover Nexa's own digital products and developer tools.",
+        metaTitle: "Digital products and developer tools – Nexa",
+        metaDescription: "Discover Nexa's own digital products and developer tools, including Nexa CLI.",
         eyebrow: "Our products",
         title: "Tools we genuinely enjoy using.",
         description:
@@ -359,8 +359,8 @@ const resources = {
         },
       },
       projectsPage: {
-        metaTitle: "Projects – Nexa",
-        metaDescription: "Explore Nexa's selected web and digital projects.",
+        metaTitle: "Web development projects and case studies – Nexa",
+        metaDescription: "Explore Nexa's selected online store, web application, and digital product projects.",
         eyebrow: "Selected work",
         title: "Digital experiences built around real business goals.",
         description:
@@ -378,8 +378,8 @@ const resources = {
         },
       },
       contactPage: {
-        metaTitle: "Contact – Nexa",
-        metaDescription: "Contact Nexa and tell us about your next digital project.",
+        metaTitle: "Contact and project quote – Nexa",
+        metaDescription: "Contact Nexa and request a tailored quote for your website or application project.",
         eyebrow: "Contact",
         title: "Let's build something genuinely great together.",
         description:
@@ -400,8 +400,8 @@ const resources = {
         },
       },
       calculatorPage: {
-        metaTitle: "Price calculator – Nexa",
-        metaDescription: "Configure your digital project and see its estimated one-time and monthly costs.",
+        metaTitle: "Website and app price calculator – Nexa",
+        metaDescription: "Configure your digital project and see the estimated one-time development and monthly maintenance costs.",
         eyebrow: "Project calculator",
         title: "How much will it cost to build your idea?",
         description:
@@ -476,7 +476,7 @@ const resources = {
       },
       footer: {
         description:
-          "We design and develop modern, scalable digital products from the first idea to a working solution.",
+          "We design and develop business websites, subscription platforms, online stores, and custom web applications.",
         navigation: "Pages",
         information: "Information",
         getInTouch: "Let's discuss your project",
@@ -602,51 +602,51 @@ const resources = {
         closeMenu: "Close menu",
       },
       hero: {
-        eyebrow: "Digital product studio",
-        titlePrimary: "Digital products.",
-        titleSecondary: "Real value.",
+        eyebrow: "Web development studio",
+        titlePrimary: "Websites that win customers.",
+        titleSecondary: "Platforms that scale with you.",
         description:
-          "Nexa helps turn your ideas into modern, scalable, and user-centered digital products.",
-        startProject: "Start your project",
-        viewWork: "Explore our work",
+          "We build fast, clear, and scalable web solutions that support how your business operates and grows.",
+        startProject: "Discuss your project",
+        viewWork: "View our projects",
       },
       features: {
         fast: {
-          title: "Fast development",
-          description: "Agile processes help bring your idea to market quickly.",
+          title: "Goal-focused development",
+          description: "We focus on business outcomes and the features your product genuinely needs.",
         },
         modern: {
-          title: "Modern technology",
-          description: "We build reliable products with the latest technologies.",
+          title: "Modern and fast",
+          description: "We build secure, fast-loading systems that remain maintainable in the long term.",
         },
         scalable: {
-          title: "Scalable solutions",
-          description: "Growth-ready architectures that scale alongside your business.",
+          title: "Scalable system foundations",
+          description: "We design architectures that grow alongside your users and your business.",
         },
         userCentered: {
-          title: "User-centered",
-          description: "User experience is at the heart of the process from day one.",
+          title: "Conversion-focused UX",
+          description: "Clear interfaces guide visitors toward the next meaningful action.",
         },
       },
       services: {
-        eyebrow: "Our solutions",
-        title: "How can we help?",
-        more: "Learn more",
+        eyebrow: "Our web services",
+        title: "What do we build?",
+        more: "Details",
         web: {
-          title: "Web applications",
-          description: "Custom web systems designed around your business goals.",
+          title: "Business websites",
+          description: "Fast, responsive, and search-friendly websites designed to generate customers for your business.",
         },
-        saas: {
-          title: "SaaS products",
-          description: "Scalable, future-ready subscription-based solutions.",
+        platforms: {
+          title: "Subscription platforms",
+          description: "Subscription-based, multi-user web platforms built on stable and extensible foundations.",
         },
         mobile: {
-          title: "Mobile applications",
-          description: "High-performance mobile apps for iOS and Android.",
+          title: "Online stores",
+          description: "Clear, fast, and manageable ecommerce experiences with payment and business integrations.",
         },
         design: {
-          title: "UI/UX design",
-          description: "Intuitive, modern interfaces that put your users first.",
+          title: "Custom web applications",
+          description: "Admin panels, customer portals, and internal systems tailored to your business processes.",
         },
       },
       stats: {

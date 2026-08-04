@@ -7,9 +7,9 @@ import {
   Layers3,
   LayoutDashboard,
   Rocket,
+  ShoppingCart,
   Smartphone,
   UsersRound,
-  WandSparkles,
   Zap,
 } from "lucide-react";
 import { useEffect } from "react";
@@ -23,6 +23,7 @@ import { ProjectsPage } from "./pages/ProjectsPage";
 import { ContactPage } from "./pages/ContactPage";
 import { CalculatorPage } from "./pages/CalculatorPage";
 import { LegalPage, type LegalPageType } from "./pages/LegalPage";
+import { getLocaleFromPath, getRoutePath, localizePath } from "./lib/locale";
 
 type CardItem = {
   title: string;
@@ -109,15 +110,23 @@ function NeonOrb() {
 
 function App() {
   const { i18n, t } = useTranslation();
-  const isProductsPage = window.location.pathname.replace(/\/+$/, "") === "/products";
-  const isProjectsPage = window.location.pathname.replace(/\/+$/, "") === "/projects";
-  const isContactPage = window.location.pathname.replace(/\/+$/, "") === "/contact";
-  const isCalculatorPage = window.location.pathname.replace(/\/+$/, "") === "/calculator";
+  const routePath = getRoutePath();
+  const urlLocale = getLocaleFromPath();
+  const isProductsPage = routePath === "/products";
+  const isProjectsPage = routePath === "/projects";
+  const isContactPage = routePath === "/contact";
+  const isCalculatorPage = routePath === "/calculator";
   const legalPageType = (
     ["privacy", "terms", "cookies"] as LegalPageType[]
-  ).find((page) => window.location.pathname.replace(/\/+$/, "") === `/${page}`);
+  ).find((page) => routePath === `/${page}`);
 
   useEffect(() => {
+    if (urlLocale) {
+      localStorage.setItem(LANGUAGE_STORAGE_KEY, urlLocale);
+      void i18n.changeLanguage(urlLocale);
+      return;
+    }
+
     const savedLanguage = localStorage.getItem(LANGUAGE_STORAGE_KEY);
     if (isLanguage(savedLanguage)) {
       void i18n.changeLanguage(savedLanguage);
@@ -144,7 +153,7 @@ function App() {
       });
 
     return () => controller.abort();
-  }, [i18n]);
+  }, [i18n, urlLocale]);
 
   useEffect(() => {
     const language: Language = i18n.resolvedLanguage === "hu" ? "hu" : "en";
@@ -160,13 +169,76 @@ function App() {
             : legalPageType
               ? `legalPages.${legalPageType}`
         : "meta";
-    document.title = t(`${metaPrefix}.${metaPrefix === "meta" ? "title" : "metaTitle"}`);
+    const title = t(`${metaPrefix}.${metaPrefix === "meta" ? "title" : "metaTitle"}`);
+    const metaDescription = t(
+      `${metaPrefix}.${metaPrefix === "meta" ? "description" : "metaDescription"}`,
+    );
+    document.title = title;
 
     const description = document.querySelector<HTMLMetaElement>('meta[name="description"]');
-    description?.setAttribute(
-      "content",
-      t(`${metaPrefix}.${metaPrefix === "meta" ? "description" : "metaDescription"}`),
+    description?.setAttribute("content", metaDescription);
+
+    const setMeta = (selector: string, attribute: "name" | "property", key: string, content: string) => {
+      let element = document.querySelector<HTMLMetaElement>(selector);
+      if (!element) {
+        element = document.createElement("meta");
+        element.setAttribute(attribute, key);
+        document.head.appendChild(element);
+      }
+      element.setAttribute("content", content);
+    };
+    const setLink = (hreflang: string | null, href: string, rel = "alternate") => {
+      const selector = hreflang
+        ? `link[rel="${rel}"][hreflang="${hreflang}"]`
+        : `link[rel="${rel}"]:not([hreflang])`;
+      let element = document.querySelector<HTMLLinkElement>(selector);
+      if (!element) {
+        element = document.createElement("link");
+        element.rel = rel;
+        if (hreflang) element.hreflang = hreflang;
+        document.head.appendChild(element);
+      }
+      element.href = href;
+    };
+
+    const canonicalUrl = new URL(localizePath(routePath, urlLocale), window.location.origin).href;
+    const ogImageUrl = new URL("/og.png", window.location.origin).href;
+    setLink(null, canonicalUrl, "canonical");
+    setLink("hu", new URL(localizePath(routePath, "hu"), window.location.origin).href);
+    setLink("en", new URL(localizePath(routePath, "en"), window.location.origin).href);
+    setLink("x-default", new URL(localizePath(routePath, null), window.location.origin).href);
+    setMeta(
+      'meta[name="robots"]',
+      "name",
+      "robots",
+      legalPageType ? "noindex, follow" : "index, follow, max-image-preview:large",
     );
+    setMeta('meta[property="og:type"]', "property", "og:type", "website");
+    setMeta('meta[property="og:site_name"]', "property", "og:site_name", "Nexa");
+    setMeta('meta[property="og:title"]', "property", "og:title", title);
+    setMeta('meta[property="og:description"]', "property", "og:description", metaDescription);
+    setMeta('meta[property="og:url"]', "property", "og:url", canonicalUrl);
+    setMeta('meta[property="og:image"]', "property", "og:image", ogImageUrl);
+    setMeta('meta[property="og:locale"]', "property", "og:locale", language === "hu" ? "hu_HU" : "en_US");
+    setMeta('meta[name="twitter:card"]', "name", "twitter:card", "summary_large_image");
+    setMeta('meta[name="twitter:title"]', "name", "twitter:title", title);
+    setMeta('meta[name="twitter:description"]', "name", "twitter:description", metaDescription);
+    setMeta('meta[name="twitter:image"]', "name", "twitter:image", ogImageUrl);
+
+    let structuredData = document.querySelector<HTMLScriptElement>("#nexa-structured-data");
+    if (!structuredData) {
+      structuredData = document.createElement("script");
+      structuredData.id = "nexa-structured-data";
+      structuredData.type = "application/ld+json";
+      document.head.appendChild(structuredData);
+    }
+    structuredData.textContent = JSON.stringify({
+      "@context": "https://schema.org",
+      "@graph": [
+        { "@type": "Organization", "@id": `${window.location.origin}/#organization`, name: "Nexa", url: window.location.origin, logo: new URL("/favicon.svg", window.location.origin).href },
+        { "@type": "WebSite", "@id": `${window.location.origin}/#website`, name: "Nexa", url: window.location.origin, publisher: { "@id": `${window.location.origin}/#organization` } },
+      ],
+    });
   }, [
     i18n.resolvedLanguage,
     isCalculatorPage,
@@ -174,7 +246,9 @@ function App() {
     isProductsPage,
     isProjectsPage,
     legalPageType,
+    routePath,
     t,
+    urlLocale,
   ]);
 
   if (isProductsPage) {
@@ -214,9 +288,9 @@ function App() {
 
   const serviceItems: CardItem[] = [
     { title: t("services.web.title"), description: t("services.web.description"), icon: LayoutDashboard },
-    { title: t("services.saas.title"), description: t("services.saas.description"), icon: Layers3 },
-    { title: t("services.mobile.title"), description: t("services.mobile.description"), icon: Smartphone },
-    { title: t("services.design.title"), description: t("services.design.description"), icon: WandSparkles },
+    { title: t("services.platforms.title"), description: t("services.platforms.description"), icon: Layers3 },
+    { title: t("services.mobile.title"), description: t("services.mobile.description"), icon: ShoppingCart },
+    { title: t("services.design.title"), description: t("services.design.description"), icon: Code2 },
   ];
 
   const stats: StatItem[] = [

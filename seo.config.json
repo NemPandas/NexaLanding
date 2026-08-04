@@ -1,0 +1,53 @@
+{
+  "siteName": "Nexa",
+  "pages": [
+    {
+      "path": "/",
+      "index": true,
+      "hu": { "title": "Webfejlesztés és egyedi online rendszerek – Nexa", "description": "Egyedi weboldalak, webáruházak, előfizetéses platformok és webalkalmazások tervezése és fejlesztése." },
+      "en": { "title": "Web development and custom online platforms – Nexa", "description": "Design and development of custom websites, online stores, subscription platforms, and web applications." }
+    },
+    {
+      "path": "/calculator",
+      "index": true,
+      "hu": { "title": "Weboldal és alkalmazás árkalkulátor – Nexa", "description": "Állítsd össze digitális projektedet, és nézd meg a becsült egyszeri fejlesztési és havi üzemeltetési költségeket." },
+      "en": { "title": "Website and app price calculator – Nexa", "description": "Configure your digital project and see the estimated one-time development and monthly maintenance costs." }
+    },
+    {
+      "path": "/projects",
+      "index": true,
+      "hu": { "title": "Webfejlesztési projektek és referenciák – Nexa", "description": "Ismerd meg a Nexa válogatott webáruház-, webalkalmazás- és digitális projektjeit." },
+      "en": { "title": "Web development projects and case studies – Nexa", "description": "Explore Nexa's selected online store, web application, and digital product projects." }
+    },
+    {
+      "path": "/products",
+      "index": true,
+      "hu": { "title": "Digitális termékek és fejlesztői eszközök – Nexa", "description": "Fedezd fel a Nexa saját digitális termékeit és fejlesztői eszközeit, köztük a Nexa CLI-t." },
+      "en": { "title": "Digital products and developer tools – Nexa", "description": "Discover Nexa's own digital products and developer tools, including Nexa CLI." }
+    },
+    {
+      "path": "/contact",
+      "index": true,
+      "hu": { "title": "Kapcsolat és projektajánlat – Nexa", "description": "Vedd fel a kapcsolatot a Nexával, és kérj személyre szabott ajánlatot weboldaladhoz vagy alkalmazásodhoz." },
+      "en": { "title": "Contact and project quote – Nexa", "description": "Contact Nexa and request a tailored quote for your website or application project." }
+    },
+    {
+      "path": "/privacy",
+      "index": false,
+      "hu": { "title": "Adatvédelem – Nexa", "description": "A Nexa adatkezelési tájékoztatójának szerkeszthető tervezete." },
+      "en": { "title": "Privacy – Nexa", "description": "An editable draft of Nexa's privacy notice." }
+    },
+    {
+      "path": "/terms",
+      "index": false,
+      "hu": { "title": "Általános Szerződési Feltételek – Nexa", "description": "A Nexa általános szerződési feltételeinek szerkeszthető tervezete." },
+      "en": { "title": "Terms and Conditions – Nexa", "description": "An editable draft of Nexa's general terms and conditions." }
+    },
+    {
+      "path": "/cookies",
+      "index": false,
+      "hu": { "title": "Cookie-tájékoztató – Nexa", "description": "A Nexa cookie- és böngészőtárolási tájékoztatójának szerkeszthető tervezete." },
+      "en": { "title": "Cookie notice – Nexa", "description": "An editable draft of Nexa's cookie and browser-storage notice." }
+    }
+  ]
+}

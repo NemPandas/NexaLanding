@@ -1,0 +1,12 @@
+{
+  "name": "Nexa Digital Product Studio",
+  "short_name": "Nexa",
+  "description": "Modern digital products, web applications, and mobile apps.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#05030d",
+  "theme_color": "#05030d",
+  "icons": [
+    { "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml" }
+  ]
+}

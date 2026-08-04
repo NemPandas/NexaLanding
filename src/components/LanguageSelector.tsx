@@ -6,6 +6,7 @@ import {
   supportedLanguages,
   type Language,
 } from "../i18n";
+import { getRoutePath, localizePath } from "../lib/locale";
 
 const languageLabels: Record<Language, string> = {
   hu: "HU",
@@ -36,8 +37,8 @@ export function LanguageSelector() {
 
   const selectLanguage = (language: Language) => {
     localStorage.setItem(LANGUAGE_STORAGE_KEY, language);
-    void i18n.changeLanguage(language);
     setIsOpen(false);
+    window.location.assign(localizePath(getRoutePath(), language));
   };
 
   return (
