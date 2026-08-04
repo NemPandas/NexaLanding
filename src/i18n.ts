@@ -70,7 +70,10 @@ const resources = {
           message: "Üzenet",
           messagePlaceholder: "Mesélj röviden a projektről, az elképzeléseidről és a céljaidról…",
           submit: "Üzenet elküldése",
-          demoNotice: "Az üzenetküldési funkció hamarosan elérhető.",
+          submitting: "Küldés folyamatban…",
+          success: "Köszönjük! Az üzeneted sikeresen megérkezett.",
+          error: "Az üzenetet nem sikerült elküldeni. Kérjük, próbáld újra.",
+          notice: "A név, az e-mail-cím és az üzenet kitöltése kötelező.",
         },
       },
       calculatorPage: {
@@ -396,7 +399,10 @@ const resources = {
           message: "Message",
           messagePlaceholder: "Tell us briefly about your project, ideas, and goals…",
           submit: "Send message",
-          demoNotice: "Message delivery will be available soon.",
+          submitting: "Sending…",
+          success: "Thank you! Your message has been sent successfully.",
+          error: "The message could not be sent. Please try again.",
+          notice: "Name, email, and message are required.",
         },
       },
       calculatorPage: {

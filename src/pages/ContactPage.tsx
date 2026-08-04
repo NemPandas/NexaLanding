@@ -1,4 +1,5 @@
 import { ArrowUpRight, Mail, MessageSquareText, Phone, Sparkles, UserRound } from "lucide-react";
+import { useState, type FormEvent } from "react";
 import { useTranslation } from "react-i18next";
 import { Navbar } from "../components/Navbar";
 import { SiteBackground } from "../components/SiteBackground";
@@ -6,8 +7,39 @@ import { SiteBackground } from "../components/SiteBackground";
 const fieldClassName =
   "mt-2.5 w-full rounded-2xl border border-white/10 bg-white/[0.045] px-4 py-3.5 text-sm text-white outline-none transition placeholder:text-slate-500 hover:border-white/20 focus:border-neon-pink/60 focus:bg-white/[0.065] focus:shadow-[0_0_0_4px_rgba(255,0,122,.08)]";
 
+const WEB3FORMS_ACCESS_KEY = "6ff22de2-519a-4df4-8453-36740e422df0";
+
 export function ContactPage() {
   const { t } = useTranslation();
+  const [submitStatus, setSubmitStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
+
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    setSubmitStatus("submitting");
+
+    const form = event.currentTarget;
+    const formData = new FormData(form);
+    formData.append("access_key", WEB3FORMS_ACCESS_KEY);
+    formData.append("subject", "Új érdeklődés a Nexa weboldalról");
+    formData.append("from_name", "Nexa weboldal");
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formData,
+      });
+      const result = (await response.json()) as { success?: boolean };
+
+      if (!response.ok || !result.success) {
+        throw new Error("Form submission failed");
+      }
+
+      form.reset();
+      setSubmitStatus("success");
+    } catch {
+      setSubmitStatus("error");
+    }
+  }
 
   return (
     <SiteBackground>
@@ -45,7 +77,8 @@ export function ContactPage() {
           <div className="pointer-events-none absolute -right-24 -top-24 h-64 w-64 rounded-full bg-neon-pink/15 blur-3xl" />
           <div className="pointer-events-none absolute -bottom-24 -left-24 h-64 w-64 rounded-full bg-neon-violet/10 blur-3xl" />
 
-          <form className="relative" onSubmit={(event) => event.preventDefault()}>
+          <form className="relative" onSubmit={handleSubmit}>
+            <input type="checkbox" name="botcheck" className="hidden" tabIndex={-1} autoComplete="off" />
             <div className="grid gap-5 sm:grid-cols-2">
               <label className="text-sm font-semibold text-slate-200">
                 <span className="flex items-center gap-2">
@@ -55,6 +88,7 @@ export function ContactPage() {
                 <input
                   type="text"
                   name="name"
+                  required
                   autoComplete="name"
                   placeholder={t("contactPage.form.namePlaceholder")}
                   className={fieldClassName}
@@ -69,6 +103,7 @@ export function ContactPage() {
                 <input
                   type="email"
                   name="email"
+                  required
                   autoComplete="email"
                   placeholder={t("contactPage.form.emailPlaceholder")}
                   className={fieldClassName}
@@ -96,6 +131,7 @@ export function ContactPage() {
                 </span>
                 <textarea
                   name="message"
+                  required
                   rows={6}
                   placeholder={t("contactPage.form.messagePlaceholder")}
                   className={`${fieldClassName} min-h-40 resize-y`}
@@ -105,12 +141,28 @@ export function ContactPage() {
 
             <button
               type="submit"
-              className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-neon-pink px-6 py-4 text-sm font-bold text-white shadow-neon transition hover:-translate-y-0.5 hover:bg-neon-magenta"
+              disabled={submitStatus === "submitting"}
+              className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-neon-pink px-6 py-4 text-sm font-bold text-white shadow-neon transition hover:-translate-y-0.5 hover:bg-neon-magenta disabled:cursor-wait disabled:opacity-70"
             >
-              {t("contactPage.form.submit")}
+              {submitStatus === "submitting" ? t("contactPage.form.submitting") : t("contactPage.form.submit")}
               <ArrowUpRight className="h-4 w-4" />
             </button>
-            <p className="mt-3 text-center text-xs text-slate-500">{t("contactPage.form.demoNotice")}</p>
+            <p
+              className={`mt-3 text-center text-xs ${
+                submitStatus === "success"
+                  ? "text-emerald-400"
+                  : submitStatus === "error"
+                    ? "text-red-400"
+                    : "text-slate-500"
+              }`}
+              aria-live="polite"
+            >
+              {submitStatus === "success"
+                ? t("contactPage.form.success")
+                : submitStatus === "error"
+                  ? t("contactPage.form.error")
+                  : t("contactPage.form.notice")}
+            </p>
           </form>
         </section>
       </main>
