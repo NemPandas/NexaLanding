@@ -13,6 +13,10 @@ import {
 
 type Selections = Record<CalculatorGroup["id"], string>;
 
+// A tájékoztató USD-árakhoz használt, könnyen frissíthető átváltási alap.
+const HUF_PER_USD = 350;
+const USD_ROUNDING_STEP = 5;
+
 const initialSelections: Selections = {
   projectType: "landing",
   design: "yes",
@@ -26,12 +30,25 @@ function addPrice(total: Price, value: Price): Price {
   return { min: total.min + value.min, max: total.max + value.max };
 }
 
+function roundUsd(valueInHuf: number): number {
+  if (valueInHuf === 0) return 0;
+  return Math.round(valueInHuf / HUF_PER_USD / USD_ROUNDING_STEP) * USD_ROUNDING_STEP;
+}
+
 function formatPrice(value: Price, locale: string): string {
-  const formatter = new Intl.NumberFormat(locale === "hu" ? "hu-HU" : "en-US", {
+  const isHungarian = locale.startsWith("hu");
+  const formatter = new Intl.NumberFormat(isHungarian ? "hu-HU" : "en-US", {
     maximumFractionDigits: 0,
   });
-  const min = `${formatter.format(value.min)} Ft`;
-  return value.min === value.max ? min : `${min} – ${formatter.format(value.max)} Ft`;
+  const displayValue = isHungarian
+    ? value
+    : { min: roundUsd(value.min), max: roundUsd(value.max) };
+  const currencySymbol = isHungarian ? "Ft" : "$";
+  const formatAmount = (amount: number) =>
+    isHungarian ? `${formatter.format(amount)} ${currencySymbol}` : `${currencySymbol}${formatter.format(amount)}`;
+  const min = formatAmount(displayValue.min);
+
+  return displayValue.min === displayValue.max ? min : `${min} – ${formatAmount(displayValue.max)}`;
 }
 
 function PriceLabel({ oneTime, withOperation }: { oneTime: Price; withOperation: Price }) {
